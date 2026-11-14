@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="530" viewBox="0 0 760 530" role="img" aria-label="Cumulative commits over time across the iaac-maai organization, in total and for the top 5 contributors">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="510" viewBox="0 0 760 510" role="img" aria-label="Cumulative commits over time across the iaac-maai organization, in total and for the top 5 contributors">
 <style>
 .bg{fill:#ffffff} .t1{fill:#1f2328} .t2{fill:#59636e} .grid{stroke:#eaeef2} .axis{stroke:#d1d9e0} .ring{stroke:#ffffff} .total{stroke:#1f2328} .totalf{fill:#1f2328} .area{fill:#1f2328;opacity:.06}
 .s0{stroke:#2a78d6} .f0{fill:#2a78d6}
@@ -17,75 +17,74 @@
 text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif} .title{font-size:18px;font-weight:600} .h{font-size:13px;font-weight:600} .small{font-size:12px} .val{font-size:12px;font-weight:600}
 .line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
 </style>
-<rect class="bg" width="760" height="530" rx="10"/>
-<text class="title t1" x="20" y="32">Activity over time</text>
-<text class="small t2" x="20" y="50">Cumulative commits across public iaac-maai repositories · AI agents, bots and imported upstream history excluded</text>
-<text class="h t1" x="20" y="70">Whole organization</text>
-<line class="axis" x1="56" x2="584" y1="194.0" y2="194.0" stroke-width="1"/>
-<text class="small t2" x="48" y="198.0" text-anchor="end">0</text>
-<line class="grid" x1="56" x2="584" y1="139.0" y2="139.0" stroke-width="1"/>
-<text class="small t2" x="48" y="143.0" text-anchor="end">500</text>
-<line class="grid" x1="56" x2="584" y1="84.0" y2="84.0" stroke-width="1"/>
-<text class="small t2" x="48" y="88.0" text-anchor="end">1,000</text>
-<polygon class="area" points="56.0,194.0 56.0,194.0 56.0,194.0 56.0,193.6 56.8,193.6 56.8,192.6 58.4,192.6 58.4,192.5 59.2,192.5 59.2,191.7 93.5,191.7 93.5,190.2 94.3,190.2 94.3,188.2 99.1,188.2 99.1,188.1 115.0,188.1 115.0,187.9 367.9,187.9 367.9,187.8 368.7,187.8 368.7,184.1 369.5,184.1 369.5,176.3 370.2,176.3 370.2,170.8 371.0,170.8 371.0,170.2 374.2,170.2 374.2,170.0 375.0,170.0 375.0,169.8 552.1,169.8 552.1,169.7 552.9,169.7 552.9,169.6 558.5,169.6 558.5,166.8 559.3,166.8 559.3,163.6 560.1,163.6 560.1,162.2 560.9,162.2 560.9,157.7 561.7,157.7 561.7,155.4 562.5,155.4 562.5,152.8 563.3,152.8 563.3,143.6 564.1,143.6 564.1,141.2 564.9,141.2 564.9,140.5 565.7,140.5 565.7,140.0 566.5,140.0 566.5,138.0 567.3,138.0 567.3,135.7 568.0,135.7 568.0,131.7 568.8,131.7 568.8,124.4 569.6,124.4 569.6,123.2 570.4,123.2 570.4,118.0 571.2,118.0 571.2,116.6 572.0,116.6 572.0,115.6 572.8,115.6 572.8,115.2 573.6,115.2 573.6,113.8 574.4,113.8 574.4,110.4 575.2,110.4 575.2,108.3 576.0,108.3 576.0,106.0 576.8,106.0 576.8,105.5 577.6,105.5 577.6,104.8 579.2,104.8 579.2,104.7 580.0,104.7 580.0,103.9 581.6,103.9 581.6,101.5 582.4,101.5 582.4,99.4 583.2,99.4 583.2,96.4 584.0,96.4 584.0,94.5 584.0,94.5 584.0,194.0"/>
-<polyline class="line total" points="56.0,194.0 56.0,194.0 56.0,193.6 56.8,193.6 56.8,192.6 58.4,192.6 58.4,192.5 59.2,192.5 59.2,191.7 93.5,191.7 93.5,190.2 94.3,190.2 94.3,188.2 99.1,188.2 99.1,188.1 115.0,188.1 115.0,187.9 367.9,187.9 367.9,187.8 368.7,187.8 368.7,184.1 369.5,184.1 369.5,176.3 370.2,176.3 370.2,170.8 371.0,170.8 371.0,170.2 374.2,170.2 374.2,170.0 375.0,170.0 375.0,169.8 552.1,169.8 552.1,169.7 552.9,169.7 552.9,169.6 558.5,169.6 558.5,166.8 559.3,166.8 559.3,163.6 560.1,163.6 560.1,162.2 560.9,162.2 560.9,157.7 561.7,157.7 561.7,155.4 562.5,155.4 562.5,152.8 563.3,152.8 563.3,143.6 564.1,143.6 564.1,141.2 564.9,141.2 564.9,140.5 565.7,140.5 565.7,140.0 566.5,140.0 566.5,138.0 567.3,138.0 567.3,135.7 568.0,135.7 568.0,131.7 568.8,131.7 568.8,124.4 569.6,124.4 569.6,123.2 570.4,123.2 570.4,118.0 571.2,118.0 571.2,116.6 572.0,116.6 572.0,115.6 572.8,115.6 572.8,115.2 573.6,115.2 573.6,113.8 574.4,113.8 574.4,110.4 575.2,110.4 575.2,108.3 576.0,108.3 576.0,106.0 576.8,106.0 576.8,105.5 577.6,105.5 577.6,104.8 579.2,104.8 579.2,104.7 580.0,104.7 580.0,103.9 581.6,103.9 581.6,101.5 582.4,101.5 582.4,99.4 583.2,99.4 583.2,96.4 584.0,96.4 584.0,94.5 584.0,94.5"/>
-<circle class="totalf ring" cx="584.0" cy="94.5" r="4" stroke-width="2"/>
-<text class="val t1" x="594.0" y="98.5">905</text>
-<text class="small t2" x="624.0" y="98.5">commits · 59 people</text>
-<text class="small t2" x="111.8" y="212.0" text-anchor="middle">Apr 25</text>
-<text class="small t2" x="184.4" y="212.0" text-anchor="middle">Jul 25</text>
-<text class="small t2" x="257.8" y="212.0" text-anchor="middle">Oct 25</text>
-<text class="small t2" x="331.2" y="212.0" text-anchor="middle">Jan 26</text>
-<text class="small t2" x="402.9" y="212.0" text-anchor="middle">Apr 26</text>
-<text class="small t2" x="475.5" y="212.0" text-anchor="middle">Jul 26</text>
-<text class="small t2" x="548.9" y="212.0" text-anchor="middle">Oct 26</text>
-<text class="h t1" x="20" y="234">Top 5 contributors</text>
-<rect class="f0" x="20" y="248" width="14" height="4" rx="2"/>
-<text class="small t1" x="40" y="254">SindhujaDavuluri-IAAC</text>
-<rect class="f1" x="196.6" y="248" width="14" height="4" rx="2"/>
-<text class="small t1" x="216.6" y="254">snehashenoy-ux</text>
-<rect class="f2" x="327.0" y="248" width="14" height="4" rx="2"/>
-<text class="small t1" x="347.0" y="254">PaintDumpster</text>
-<rect class="f3" x="450.8" y="248" width="14" height="4" rx="2"/>
-<text class="small t1" x="470.8" y="254">ahmedbelahcen-cmd</text>
-<rect class="f4" x="601.0" y="248" width="14" height="4" rx="2"/>
-<text class="small t1" x="621.0" y="254">EmmaMarquezg</text>
-<line class="axis" x1="56" x2="584" y1="478.0" y2="478.0" stroke-width="1"/>
-<text class="small t2" x="48" y="482.0" text-anchor="end">0</text>
-<line class="grid" x1="56" x2="584" y1="428.0" y2="428.0" stroke-width="1"/>
-<text class="small t2" x="48" y="432.0" text-anchor="end">20</text>
-<line class="grid" x1="56" x2="584" y1="378.0" y2="378.0" stroke-width="1"/>
-<text class="small t2" x="48" y="382.0" text-anchor="end">40</text>
-<line class="grid" x1="56" x2="584" y1="328.0" y2="328.0" stroke-width="1"/>
-<text class="small t2" x="48" y="332.0" text-anchor="end">60</text>
-<line class="grid" x1="56" x2="584" y1="278.0" y2="278.0" stroke-width="1"/>
-<text class="small t2" x="48" y="282.0" text-anchor="end">80</text>
-<polyline class="line s0" points="56.0,478.0 558.5,478.0 558.5,455.5 559.3,455.5 559.3,440.5 560.9,440.5 560.9,428.0 564.1,428.0 564.1,413.0 564.9,413.0 564.9,408.0 568.8,408.0 568.8,373.0 573.6,373.0 573.6,363.0 574.4,363.0 574.4,353.0 577.6,353.0 577.6,348.0 581.6,348.0 581.6,323.0 582.4,323.0 582.4,320.5 584.0,320.5 584.0,315.5 584.0,315.5"/>
-<polyline class="line s1" points="56.0,478.0 558.5,478.0 558.5,475.5 559.3,475.5 559.3,465.5 561.7,465.5 561.7,445.5 562.5,445.5 562.5,430.5 563.3,430.5 563.3,410.5 564.9,410.5 564.9,405.5 565.7,405.5 565.7,398.0 568.0,398.0 568.0,390.5 568.8,390.5 568.8,388.0 569.6,388.0 569.6,380.5 570.4,380.5 570.4,365.5 573.6,365.5 573.6,358.0 576.0,358.0 576.0,355.5 580.0,355.5 580.0,353.0 583.2,353.0 583.2,345.5 584.0,345.5"/>
-<polyline class="line s2" points="56.0,478.0 367.9,478.0 367.9,475.5 368.7,475.5 368.7,470.5 369.5,470.5 369.5,468.0 370.2,468.0 370.2,450.5 552.1,450.5 552.1,448.0 552.9,448.0 552.9,445.5 559.3,445.5 559.3,428.0 560.1,428.0 560.1,425.5 563.3,425.5 563.3,418.0 564.1,418.0 564.1,415.5 565.7,415.5 565.7,413.0 568.8,413.0 568.8,405.5 569.6,405.5 569.6,400.5 570.4,400.5 570.4,390.5 571.2,390.5 571.2,388.0 572.0,388.0 572.0,383.0 574.4,383.0 574.4,380.5 575.2,380.5 575.2,378.0 577.6,378.0 577.6,368.0 580.0,368.0 580.0,365.5 582.4,365.5 582.4,363.0 584.0,363.0 584.0,350.5 584.0,350.5"/>
-<polyline class="line s3" points="56.0,478.0 560.9,478.0 560.9,463.0 564.1,463.0 564.1,448.0 568.0,448.0 568.0,403.0 568.8,403.0 568.8,388.0 570.4,388.0 570.4,385.5 571.2,385.5 571.2,373.0 581.6,373.0 581.6,370.5 583.2,370.5 583.2,368.0 584.0,368.0 584.0,353.0 584.0,353.0"/>
-<polyline class="line s4" points="56.0,478.0 559.3,478.0 559.3,475.5 560.9,475.5 560.9,453.0 562.5,453.0 562.5,445.5 563.3,445.5 563.3,430.5 564.1,430.5 564.1,428.0 568.0,428.0 568.0,423.0 568.8,423.0 568.8,418.0 569.6,418.0 569.6,413.0 574.4,413.0 574.4,403.0 575.2,403.0 575.2,400.5 576.0,400.5 576.0,380.5 583.2,380.5 583.2,363.0 584.0,363.0"/>
-<circle class="f0 ring" cx="584.0" cy="315.5" r="4" stroke-width="2"/>
-<circle class="f1 ring" cx="584.0" cy="345.5" r="4" stroke-width="2"/>
-<circle class="f2 ring" cx="584.0" cy="350.5" r="4" stroke-width="2"/>
-<circle class="f3 ring" cx="584.0" cy="353.0" r="4" stroke-width="2"/>
-<circle class="f4 ring" cx="584.0" cy="363.0" r="4" stroke-width="2"/>
-<text class="val t1" x="594.0" y="319.5">65</text>
-<text class="small t2" x="616.0" y="319.5">SindhujaDavuluri-IAAC</text>
-<text class="val t1" x="594.0" y="349.5">53</text>
-<text class="small t2" x="616.0" y="349.5">snehashenoy-ux</text>
-<text class="val t1" x="594.0" y="365.5">51</text>
-<text class="small t2" x="616.0" y="365.5">PaintDumpster</text>
-<text class="val t1" x="594.0" y="381.5">50</text>
-<text class="small t2" x="616.0" y="381.5">ahmedbelahcen-cmd</text>
-<text class="val t1" x="594.0" y="397.5">46</text>
-<text class="small t2" x="616.0" y="397.5">EmmaMarquezg</text>
-<text class="small t2" x="111.8" y="496.0" text-anchor="middle">Apr 25</text>
-<text class="small t2" x="184.4" y="496.0" text-anchor="middle">Jul 25</text>
-<text class="small t2" x="257.8" y="496.0" text-anchor="middle">Oct 25</text>
-<text class="small t2" x="331.2" y="496.0" text-anchor="middle">Jan 26</text>
-<text class="small t2" x="402.9" y="496.0" text-anchor="middle">Apr 26</text>
-<text class="small t2" x="475.5" y="496.0" text-anchor="middle">Jul 26</text>
-<text class="small t2" x="548.9" y="496.0" text-anchor="middle">Oct 26</text>
-<text class="small t2" x="740" y="518" text-anchor="end">Updated 14 Nov 2026</text>
+<rect class="bg" width="760" height="510" rx="10"/>
+<text class="small t2" x="20" y="26">Cumulative commits across public iaac-maai repositories · AI agents, bots and imported upstream history excluded</text>
+<text class="h t1" x="20" y="50">Whole organization</text>
+<line class="axis" x1="56" x2="584" y1="174.0" y2="174.0" stroke-width="1"/>
+<text class="small t2" x="48" y="178.0" text-anchor="end">0</text>
+<line class="grid" x1="56" x2="584" y1="119.0" y2="119.0" stroke-width="1"/>
+<text class="small t2" x="48" y="123.0" text-anchor="end">500</text>
+<line class="grid" x1="56" x2="584" y1="64.0" y2="64.0" stroke-width="1"/>
+<text class="small t2" x="48" y="68.0" text-anchor="end">1,000</text>
+<polygon class="area" points="56.0,174.0 56.0,174.0 56.0,174.0 56.0,173.6 56.8,173.6 56.8,172.6 58.4,172.6 58.4,172.5 59.2,172.5 59.2,171.7 93.5,171.7 93.5,170.2 94.3,170.2 94.3,168.2 99.1,168.2 99.1,168.1 115.0,168.1 115.0,167.9 367.9,167.9 367.9,167.8 368.7,167.8 368.7,164.1 369.5,164.1 369.5,156.3 370.2,156.3 370.2,150.8 371.0,150.8 371.0,150.2 374.2,150.2 374.2,150.0 375.0,150.0 375.0,149.8 552.1,149.8 552.1,149.7 552.9,149.7 552.9,149.6 558.5,149.6 558.5,146.8 559.3,146.8 559.3,143.6 560.1,143.6 560.1,142.2 560.9,142.2 560.9,137.7 561.7,137.7 561.7,135.4 562.5,135.4 562.5,132.8 563.3,132.8 563.3,123.6 564.1,123.6 564.1,121.2 564.9,121.2 564.9,120.5 565.7,120.5 565.7,120.0 566.5,120.0 566.5,118.0 567.3,118.0 567.3,115.7 568.0,115.7 568.0,111.7 568.8,111.7 568.8,104.4 569.6,104.4 569.6,103.2 570.4,103.2 570.4,98.0 571.2,98.0 571.2,96.6 572.0,96.6 572.0,95.6 572.8,95.6 572.8,95.2 573.6,95.2 573.6,93.8 574.4,93.8 574.4,90.4 575.2,90.4 575.2,88.3 576.0,88.3 576.0,86.0 576.8,86.0 576.8,85.5 577.6,85.5 577.6,84.8 579.2,84.8 579.2,84.7 580.0,84.7 580.0,83.9 581.6,83.9 581.6,81.5 582.4,81.5 582.4,79.4 583.2,79.4 583.2,76.4 584.0,76.4 584.0,74.5 584.0,74.5 584.0,174.0"/>
+<polyline class="line total" points="56.0,174.0 56.0,174.0 56.0,173.6 56.8,173.6 56.8,172.6 58.4,172.6 58.4,172.5 59.2,172.5 59.2,171.7 93.5,171.7 93.5,170.2 94.3,170.2 94.3,168.2 99.1,168.2 99.1,168.1 115.0,168.1 115.0,167.9 367.9,167.9 367.9,167.8 368.7,167.8 368.7,164.1 369.5,164.1 369.5,156.3 370.2,156.3 370.2,150.8 371.0,150.8 371.0,150.2 374.2,150.2 374.2,150.0 375.0,150.0 375.0,149.8 552.1,149.8 552.1,149.7 552.9,149.7 552.9,149.6 558.5,149.6 558.5,146.8 559.3,146.8 559.3,143.6 560.1,143.6 560.1,142.2 560.9,142.2 560.9,137.7 561.7,137.7 561.7,135.4 562.5,135.4 562.5,132.8 563.3,132.8 563.3,123.6 564.1,123.6 564.1,121.2 564.9,121.2 564.9,120.5 565.7,120.5 565.7,120.0 566.5,120.0 566.5,118.0 567.3,118.0 567.3,115.7 568.0,115.7 568.0,111.7 568.8,111.7 568.8,104.4 569.6,104.4 569.6,103.2 570.4,103.2 570.4,98.0 571.2,98.0 571.2,96.6 572.0,96.6 572.0,95.6 572.8,95.6 572.8,95.2 573.6,95.2 573.6,93.8 574.4,93.8 574.4,90.4 575.2,90.4 575.2,88.3 576.0,88.3 576.0,86.0 576.8,86.0 576.8,85.5 577.6,85.5 577.6,84.8 579.2,84.8 579.2,84.7 580.0,84.7 580.0,83.9 581.6,83.9 581.6,81.5 582.4,81.5 582.4,79.4 583.2,79.4 583.2,76.4 584.0,76.4 584.0,74.5 584.0,74.5"/>
+<circle class="totalf ring" cx="584.0" cy="74.5" r="4" stroke-width="2"/>
+<text class="val t1" x="594.0" y="78.5">905</text>
+<text class="small t2" x="624.0" y="78.5">commits · 59 people</text>
+<text class="small t2" x="111.8" y="192.0" text-anchor="middle">Apr 25</text>
+<text class="small t2" x="184.4" y="192.0" text-anchor="middle">Jul 25</text>
+<text class="small t2" x="257.8" y="192.0" text-anchor="middle">Oct 25</text>
+<text class="small t2" x="331.2" y="192.0" text-anchor="middle">Jan 26</text>
+<text class="small t2" x="402.9" y="192.0" text-anchor="middle">Apr 26</text>
+<text class="small t2" x="475.5" y="192.0" text-anchor="middle">Jul 26</text>
+<text class="small t2" x="548.9" y="192.0" text-anchor="middle">Oct 26</text>
+<text class="h t1" x="20" y="214">Top 5 contributors</text>
+<rect class="f0" x="20" y="228" width="14" height="4" rx="2"/>
+<text class="small t1" x="40" y="234">SindhujaDavuluri-IAAC</text>
+<rect class="f1" x="196.6" y="228" width="14" height="4" rx="2"/>
+<text class="small t1" x="216.6" y="234">snehashenoy-ux</text>
+<rect class="f2" x="327.0" y="228" width="14" height="4" rx="2"/>
+<text class="small t1" x="347.0" y="234">PaintDumpster</text>
+<rect class="f3" x="450.8" y="228" width="14" height="4" rx="2"/>
+<text class="small t1" x="470.8" y="234">ahmedbelahcen-cmd</text>
+<rect class="f4" x="601.0" y="228" width="14" height="4" rx="2"/>
+<text class="small t1" x="621.0" y="234">EmmaMarquezg</text>
+<line class="axis" x1="56" x2="584" y1="458.0" y2="458.0" stroke-width="1"/>
+<text class="small t2" x="48" y="462.0" text-anchor="end">0</text>
+<line class="grid" x1="56" x2="584" y1="408.0" y2="408.0" stroke-width="1"/>
+<text class="small t2" x="48" y="412.0" text-anchor="end">20</text>
+<line class="grid" x1="56" x2="584" y1="358.0" y2="358.0" stroke-width="1"/>
+<text class="small t2" x="48" y="362.0" text-anchor="end">40</text>
+<line class="grid" x1="56" x2="584" y1="308.0" y2="308.0" stroke-width="1"/>
+<text class="small t2" x="48" y="312.0" text-anchor="end">60</text>
+<line class="grid" x1="56" x2="584" y1="258.0" y2="258.0" stroke-width="1"/>
+<text class="small t2" x="48" y="262.0" text-anchor="end">80</text>
+<polyline class="line s0" points="56.0,458.0 558.5,458.0 558.5,435.5 559.3,435.5 559.3,420.5 560.9,420.5 560.9,408.0 564.1,408.0 564.1,393.0 564.9,393.0 564.9,388.0 568.8,388.0 568.8,353.0 573.6,353.0 573.6,343.0 574.4,343.0 574.4,333.0 577.6,333.0 577.6,328.0 581.6,328.0 581.6,303.0 582.4,303.0 582.4,300.5 584.0,300.5 584.0,295.5 584.0,295.5"/>
+<polyline class="line s1" points="56.0,458.0 558.5,458.0 558.5,455.5 559.3,455.5 559.3,445.5 561.7,445.5 561.7,425.5 562.5,425.5 562.5,410.5 563.3,410.5 563.3,390.5 564.9,390.5 564.9,385.5 565.7,385.5 565.7,378.0 568.0,378.0 568.0,370.5 568.8,370.5 568.8,368.0 569.6,368.0 569.6,360.5 570.4,360.5 570.4,345.5 573.6,345.5 573.6,338.0 576.0,338.0 576.0,335.5 580.0,335.5 580.0,333.0 583.2,333.0 583.2,325.5 584.0,325.5"/>
+<polyline class="line s2" points="56.0,458.0 367.9,458.0 367.9,455.5 368.7,455.5 368.7,450.5 369.5,450.5 369.5,448.0 370.2,448.0 370.2,430.5 552.1,430.5 552.1,428.0 552.9,428.0 552.9,425.5 559.3,425.5 559.3,408.0 560.1,408.0 560.1,405.5 563.3,405.5 563.3,398.0 564.1,398.0 564.1,395.5 565.7,395.5 565.7,393.0 568.8,393.0 568.8,385.5 569.6,385.5 569.6,380.5 570.4,380.5 570.4,370.5 571.2,370.5 571.2,368.0 572.0,368.0 572.0,363.0 574.4,363.0 574.4,360.5 575.2,360.5 575.2,358.0 577.6,358.0 577.6,348.0 580.0,348.0 580.0,345.5 582.4,345.5 582.4,343.0 584.0,343.0 584.0,330.5 584.0,330.5"/>
+<polyline class="line s3" points="56.0,458.0 560.9,458.0 560.9,443.0 564.1,443.0 564.1,428.0 568.0,428.0 568.0,383.0 568.8,383.0 568.8,368.0 570.4,368.0 570.4,365.5 571.2,365.5 571.2,353.0 581.6,353.0 581.6,350.5 583.2,350.5 583.2,348.0 584.0,348.0 584.0,333.0 584.0,333.0"/>
+<polyline class="line s4" points="56.0,458.0 559.3,458.0 559.3,455.5 560.9,455.5 560.9,433.0 562.5,433.0 562.5,425.5 563.3,425.5 563.3,410.5 564.1,410.5 564.1,408.0 568.0,408.0 568.0,403.0 568.8,403.0 568.8,398.0 569.6,398.0 569.6,393.0 574.4,393.0 574.4,383.0 575.2,383.0 575.2,380.5 576.0,380.5 576.0,360.5 583.2,360.5 583.2,343.0 584.0,343.0"/>
+<circle class="f0 ring" cx="584.0" cy="295.5" r="4" stroke-width="2"/>
+<circle class="f1 ring" cx="584.0" cy="325.5" r="4" stroke-width="2"/>
+<circle class="f2 ring" cx="584.0" cy="330.5" r="4" stroke-width="2"/>
+<circle class="f3 ring" cx="584.0" cy="333.0" r="4" stroke-width="2"/>
+<circle class="f4 ring" cx="584.0" cy="343.0" r="4" stroke-width="2"/>
+<text class="val t1" x="594.0" y="299.5">65</text>
+<text class="small t2" x="616.0" y="299.5">SindhujaDavuluri-IAAC</text>
+<text class="val t1" x="594.0" y="329.5">53</text>
+<text class="small t2" x="616.0" y="329.5">snehashenoy-ux</text>
+<text class="val t1" x="594.0" y="345.5">51</text>
+<text class="small t2" x="616.0" y="345.5">PaintDumpster</text>
+<text class="val t1" x="594.0" y="361.5">50</text>
+<text class="small t2" x="616.0" y="361.5">ahmedbelahcen-cmd</text>
+<text class="val t1" x="594.0" y="377.5">46</text>
+<text class="small t2" x="616.0" y="377.5">EmmaMarquezg</text>
+<text class="small t2" x="111.8" y="476.0" text-anchor="middle">Apr 25</text>
+<text class="small t2" x="184.4" y="476.0" text-anchor="middle">Jul 25</text>
+<text class="small t2" x="257.8" y="476.0" text-anchor="middle">Oct 25</text>
+<text class="small t2" x="331.2" y="476.0" text-anchor="middle">Jan 26</text>
+<text class="small t2" x="402.9" y="476.0" text-anchor="middle">Apr 26</text>
+<text class="small t2" x="475.5" y="476.0" text-anchor="middle">Jul 26</text>
+<text class="small t2" x="548.9" y="476.0" text-anchor="middle">Oct 26</text>
+<text class="small t2" x="740" y="498" text-anchor="end">Updated 14 Nov 2026</text>
 </svg>

@@ -159,7 +159,7 @@ def render_svg(dates: dict[str, list[date]]) -> str:
     W = 760
     L, R = 56, 176                         # right margin holds end-of-line labels
     pw = W - L - R
-    TOP1, H1 = 84, 110                     # panel 1: org total
+    TOP1, H1 = 64, 110                     # panel 1: org total
     TOP2, H2 = TOP1 + H1 + 84, 200         # panel 2: top contributors
     H = TOP2 + H2 + 52
     font = "-apple-system,Segoe UI,Helvetica,Arial,sans-serif"
@@ -200,8 +200,7 @@ def render_svg(dates: dict[str, list[date]]) -> str:
         f'in total and for the top {len(ranked)} contributors">',
         "<style>", *css, "</style>",
         f'<rect class="bg" width="{W}" height="{H}" rx="10"/>',
-        '<text class="title t1" x="20" y="32">Activity over time</text>',
-        f'<text class="small t2" x="20" y="50">Cumulative commits across public {GH_ORG} '
+        f'<text class="small t2" x="20" y="26">Cumulative commits across public {GH_ORG} '
         "repositories · AI agents, bots and imported upstream history excluded</text>",
     ]
 
