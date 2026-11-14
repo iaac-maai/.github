@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="222" viewBox="0 0 760 222" role="img" aria-label="Cumulative commits over time across the iaac-maai organization">
+<style>
+.bg{fill:#ffffff} .t1{fill:#1f2328} .t2{fill:#59636e} .grid{stroke:#eaeef2} .axis{stroke:#d1d9e0} .ring{stroke:#ffffff} .total{stroke:#1f2328} .totalf{fill:#1f2328} .area{fill:#1f2328;opacity:.06}
+.s0{stroke:#2a78d6} .f0{fill:#2a78d6}
+.s1{stroke:#eb6834} .f1{fill:#eb6834}
+.s2{stroke:#1baf7a} .f2{fill:#1baf7a}
+.s3{stroke:#eda100} .f3{fill:#eda100}
+.s4{stroke:#e87ba4} .f4{fill:#e87ba4}
+@media (prefers-color-scheme: dark){
+  .bg{fill:#0d1117} .t1{fill:#e6edf3} .t2{fill:#9198a1} .grid{stroke:#1f252c} .axis{stroke:#30363d} .ring{stroke:#0d1117} .total{stroke:#e6edf3} .totalf{fill:#e6edf3} .area{fill:#e6edf3;opacity:.08}
+  .s0{stroke:#3987e5} .f0{fill:#3987e5}
+  .s1{stroke:#d95926} .f1{fill:#d95926}
+  .s2{stroke:#199e70} .f2{fill:#199e70}
+  .s3{stroke:#c98500} .f3{fill:#c98500}
+  .s4{stroke:#d55181} .f4{fill:#d55181}
+}
+text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif} .small{font-size:12px} .val{font-size:12px;font-weight:600}
+.line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+</style>
+<rect class="bg" width="760" height="222" rx="10"/>
+<text class="small t2" x="20" y="24">Cumulative commits across public iaac-maai repositories · AI agents, bots and imported upstream history excluded</text>
+<line class="axis" x1="56" x2="584" y1="174.0" y2="174.0" stroke-width="1"/>
+<text class="small t2" x="48" y="178.0" text-anchor="end">0</text>
+<line class="grid" x1="56" x2="584" y1="109.0" y2="109.0" stroke-width="1"/>
+<text class="small t2" x="48" y="113.0" text-anchor="end">500</text>
+<line class="grid" x1="56" x2="584" y1="44.0" y2="44.0" stroke-width="1"/>
+<text class="small t2" x="48" y="48.0" text-anchor="end">1,000</text>
+<polygon class="area" points="56.0,174.0 56.0,174.0 56.0,174.0 56.0,173.5 56.8,173.5 56.8,172.3 58.4,172.3 58.4,172.2 59.2,172.2 59.2,171.3 93.5,171.3 93.5,169.4 94.3,169.4 94.3,167.1 99.1,167.1 99.1,167.0 115.0,167.0 115.0,166.8 367.9,166.8 367.9,166.7 368.7,166.7 368.7,162.3 369.5,162.3 369.5,153.1 370.2,153.1 370.2,146.6 371.0,146.6 371.0,145.9 374.2,145.9 374.2,145.7 375.0,145.7 375.0,145.4 552.1,145.4 552.1,145.3 552.9,145.3 552.9,145.1 558.5,145.1 558.5,141.9 559.3,141.9 559.3,138.1 560.1,138.1 560.1,136.4 560.9,136.4 560.9,131.1 561.7,131.1 561.7,128.4 562.5,128.4 562.5,125.2 563.3,125.2 563.3,114.5 564.1,114.5 564.1,111.6 564.9,111.6 564.9,110.8 565.7,110.8 565.7,110.2 566.5,110.2 566.5,107.8 567.3,107.8 567.3,105.1 568.0,105.1 568.0,100.4 568.8,100.4 568.8,91.7 569.6,91.7 569.6,90.3 570.4,90.3 570.4,84.2 571.2,84.2 571.2,82.5 572.0,82.5 572.0,81.3 572.8,81.3 572.8,80.9 573.6,80.9 573.6,79.2 574.4,79.2 574.4,75.2 575.2,75.2 575.2,72.7 576.0,72.7 576.0,70.0 576.8,70.0 576.8,69.3 577.6,69.3 577.6,68.6 579.2,68.6 579.2,68.4 580.0,68.4 580.0,67.5 581.6,67.5 581.6,64.7 582.4,64.7 582.4,62.2 583.2,62.2 583.2,58.7 584.0,58.7 584.0,56.3 584.0,56.3 584.0,174.0"/>
+<polyline class="line total" points="56.0,174.0 56.0,174.0 56.0,173.5 56.8,173.5 56.8,172.3 58.4,172.3 58.4,172.2 59.2,172.2 59.2,171.3 93.5,171.3 93.5,169.4 94.3,169.4 94.3,167.1 99.1,167.1 99.1,167.0 115.0,167.0 115.0,166.8 367.9,166.8 367.9,166.7 368.7,166.7 368.7,162.3 369.5,162.3 369.5,153.1 370.2,153.1 370.2,146.6 371.0,146.6 371.0,145.9 374.2,145.9 374.2,145.7 375.0,145.7 375.0,145.4 552.1,145.4 552.1,145.3 552.9,145.3 552.9,145.1 558.5,145.1 558.5,141.9 559.3,141.9 559.3,138.1 560.1,138.1 560.1,136.4 560.9,136.4 560.9,131.1 561.7,131.1 561.7,128.4 562.5,128.4 562.5,125.2 563.3,125.2 563.3,114.5 564.1,114.5 564.1,111.6 564.9,111.6 564.9,110.8 565.7,110.8 565.7,110.2 566.5,110.2 566.5,107.8 567.3,107.8 567.3,105.1 568.0,105.1 568.0,100.4 568.8,100.4 568.8,91.7 569.6,91.7 569.6,90.3 570.4,90.3 570.4,84.2 571.2,84.2 571.2,82.5 572.0,82.5 572.0,81.3 572.8,81.3 572.8,80.9 573.6,80.9 573.6,79.2 574.4,79.2 574.4,75.2 575.2,75.2 575.2,72.7 576.0,72.7 576.0,70.0 576.8,70.0 576.8,69.3 577.6,69.3 577.6,68.6 579.2,68.6 579.2,68.4 580.0,68.4 580.0,67.5 581.6,67.5 581.6,64.7 582.4,64.7 582.4,62.2 583.2,62.2 583.2,58.7 584.0,58.7 584.0,56.3 584.0,56.3"/>
+<circle class="totalf ring" cx="584.0" cy="56.3" r="4" stroke-width="2"/>
+<text class="val t1" x="594.0" y="60.3">905</text>
+<text class="small t2" x="624.0" y="60.3">commits · 59 people</text>
+<text class="small t2" x="111.8" y="192.0" text-anchor="middle">Apr 25</text>
+<text class="small t2" x="184.4" y="192.0" text-anchor="middle">Jul 25</text>
+<text class="small t2" x="257.8" y="192.0" text-anchor="middle">Oct 25</text>
+<text class="small t2" x="331.2" y="192.0" text-anchor="middle">Jan 26</text>
+<text class="small t2" x="402.9" y="192.0" text-anchor="middle">Apr 26</text>
+<text class="small t2" x="475.5" y="192.0" text-anchor="middle">Jul 26</text>
+<text class="small t2" x="548.9" y="192.0" text-anchor="middle">Oct 26</text>
+<text class="small t2" x="740" y="210" text-anchor="end">Updated 14 Nov 2026</text>
+</svg>

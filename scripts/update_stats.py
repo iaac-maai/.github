@@ -2,7 +2,9 @@
 
 Writes:
   stats/hf.json            totals for the iaac-maai Hugging Face org (read by shields.io badges)
-  stats/contributors.svg   line chart: cumulative commits over time for the top contributors
+  stats/activity.svg       cumulative commits over time, whole organization
+  stats/top-YYYY-YY.svg    top contributors per academic year (Sep-Aug)
+  profile/README.md        the per-year <details> sections between the years markers
 
 Standard library only. Set GITHUB_TOKEN to avoid API rate limits.
 """
@@ -155,39 +157,15 @@ def time_ticks(start: date, today: date, max_ticks: int = 8) -> list[date]:
     return aligned or months[:1]
 
 
-def render_svg(dates: dict[str, list[date]]) -> str:
-    W = 760
-    L, R = 56, 176                         # right margin holds end-of-line labels
-    pw = W - L - R
-    TOP1, H1 = 64, 110                     # panel 1: org total
-    TOP2, H2 = TOP1 + H1 + 84, 200         # panel 2: top contributors
-    H = TOP2 + H2 + 52
-    font = "-apple-system,Segoe UI,Helvetica,Arial,sans-serif"
-    today = datetime.now(timezone.utc).date()
+W, L, R = 760, 56, 176          # width and plot margins (right side holds end-of-line labels)
+PW = W - L - R
+FONT = "-apple-system,Segoe UI,Helvetica,Arial,sans-serif"
+RAW = "https://raw.githubusercontent.com/iaac-maai/.github/main"
+README = ROOT / "profile" / "README.md"
+YEARS_START, YEARS_END = "<!-- years:start -->", "<!-- years:end -->"
 
-    all_days = [d for v in dates.values() for d in v]
-    if not all_days:
-        return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="120">'
-                f'<text x="20" y="60" font-family="{font}">No activity yet.</text></svg>\n')
-    start = min(all_days)
-    # Panel 2 only looks at the last 12 months (rolling window)
-    start2 = max(start, today - timedelta(days=365))
-    recent = {k: [d for d in v if d >= start2] for k, v in dates.items()}
-    recent = {k: v for k, v in recent.items() if v}
-    ranked = sorted(recent, key=lambda k: (-len(recent[k]), k.lower()))[:TOP_N]
-    span = max((today - start).days, 1)
 
-    def x(d: date) -> float:
-        return L + pw * (d - start).days / span
-
-    def x2(d: date) -> float:
-        return L + pw * (d - start2).days / max((today - start2).days, 1)
-
-    def y_scale(top: int, h: int, peak: int):
-        step = nice_step(peak, 3 if h < 150 else 4)
-        ymax = math.ceil(max(peak, 1) / step) * step
-        return (lambda v: top + h - h * v / ymax), step, ymax
-
+def svg_open(h: int, label: str) -> list[str]:
     css = [
         ".bg{fill:#ffffff} .t1{fill:#1f2328} .t2{fill:#59636e} .grid{stroke:#eaeef2} "
         ".axis{stroke:#d1d9e0} .ring{stroke:#ffffff} .total{stroke:#1f2328} .totalf{fill:#1f2328} .area{fill:#1f2328;opacity:.06}",
@@ -197,96 +175,166 @@ def render_svg(dates: dict[str, list[date]]) -> str:
         ".axis{stroke:#30363d} .ring{stroke:#0d1117} .total{stroke:#e6edf3} .totalf{fill:#e6edf3} .area{fill:#e6edf3;opacity:.08}",
         *[f"  .s{i}{{stroke:{c}}} .f{i}{{fill:{c}}}" for i, c in enumerate(SERIES_DARK)],
         "}",
-        f"text{{font-family:{font}}} .title{{font-size:18px;font-weight:600}} "
-        ".h{font-size:13px;font-weight:600} .small{font-size:12px} .val{font-size:12px;font-weight:600}",
+        f"text{{font-family:{FONT}}} .small{{font-size:12px}} .val{{font-size:12px;font-weight:600}}",
         ".line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}",
     ]
-    out = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" '
-        f'role="img" aria-label="Cumulative commits over time across the {GH_ORG} organization, '
-        f'in total and for the top {len(ranked)} contributors">',
-        "<style>", *css, "</style>",
-        f'<rect class="bg" width="{W}" height="{H}" rx="10"/>',
-        f'<text class="small t2" x="20" y="26">Cumulative commits across public {GH_ORG} '
-        "repositories · AI agents, bots and imported upstream history excluded</text>",
-    ]
+    return [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{h}" viewBox="0 0 {W} {h}" '
+            f'role="img" aria-label="{escape(label)}">',
+            "<style>", *css, "</style>",
+            f'<rect class="bg" width="{W}" height="{h}" rx="10"/>']
 
-    def grid(top: int, h: int, y, step: int, ymax: int) -> None:
-        for v in range(0, ymax + 1, step):
-            yy = y(v)
-            out.append(f'<line class="{"axis" if v == 0 else "grid"}" x1="{L}" x2="{L + pw}" '
-                       f'y1="{yy:.1f}" y2="{yy:.1f}" stroke-width="1"/>')
-            out.append(f'<text class="small t2" x="{L - 8}" y="{yy + 4:.1f}" text-anchor="end">{v:,}</text>')
 
-    def x_axis(base: float, xf, ticks: list[date]) -> None:
-        for d in ticks:
-            out.append(f'<text class="small t2" x="{xf(d):.1f}" y="{base + 18:.1f}" '
-                       f'text-anchor="middle">{d.strftime("%b %y")}</text>')
+def y_scale(top: int, h: int, peak: int):
+    step = nice_step(peak, 3 if h < 150 else 4)
+    ymax = math.ceil(max(peak, 1) / step) * step
+    return (lambda v: top + h - h * v / ymax), step, ymax
 
-    # Panel 1: whole organization (single series: the heading names it, no legend)
-    y1, step1, ymax1 = y_scale(TOP1, H1, len(all_days))
-    out.append(f'<text class="h t1" x="20" y="{TOP1 - 14}">Whole organization</text>')
-    grid(TOP1, H1, y1, step1, ymax1)
-    pts, total = cumulative_points(all_days, start, today, x, y1)
-    out.append(f'<polygon class="area" points="{x(start):.1f},{y1(0):.1f} {pts} {x(today):.1f},{y1(0):.1f}"/>')
-    out.append(f'<polyline class="line total" points="{pts}"/>')
-    out.append(f'<circle class="totalf ring" cx="{x(today):.1f}" cy="{y1(total):.1f}" r="4" stroke-width="2"/>')
-    out.append(f'<text class="val t1" x="{x(today) + 10:.1f}" y="{y1(total) + 4:.1f}">{total:,}</text>')
-    out.append(f'<text class="small t2" x="{x(today) + 16 + 8 * len(f"{total:,}"):.1f}" '
-               f'y="{y1(total) + 4:.1f}">commits · {len(dates)} people</text>')
-    x_axis(TOP1 + H1, x, time_ticks(start, today))
 
-    # Panel 2: top contributors (legend + direct end labels)
-    if not ranked:
-        out.append(f'<text class="small t2" x="20" y="{TOP2}">No commits in the last 12 months.</text>')
-        out.append("</svg>")
-        return "\n".join(out) + "\n"
-    peak = max(len(recent[k]) for k in ranked)
-    y2, step2, ymax2 = y_scale(TOP2, H2, peak)
-    out.append(f'<text class="h t1" x="20" y="{TOP2 - 44}">Top {len(ranked)} contributors · last 12 months</text>')
-    lx = 20
-    for i, login in enumerate(ranked):
-        out.append(f'<rect class="f{i}" x="{lx}" y="{TOP2 - 30}" width="14" height="4" rx="2"/>')
-        out.append(f'<text class="small t1" x="{lx + 20}" y="{TOP2 - 24}">{escape(login)}</text>')
-        lx += 20 + 6.6 * len(login) + 18
-    grid(TOP2, H2, y2, step2, ymax2)
-    ends = []
-    for i, login in enumerate(ranked):
-        pts, total = cumulative_points(recent[login], start2, today, x2, y2)
-        out.append(f'<polyline class="line s{i}" points="{pts}"/>')
-        ends.append((y2(total), i, login, total))
-    for ey, i, _, _ in ends:
-        out.append(f'<circle class="f{i} ring" cx="{x(today):.1f}" cy="{ey:.1f}" r="4" stroke-width="2"/>')
-    ends.sort()  # top of the panel first; nudge labels apart
-    label_y: list[float] = []
-    for ey, *_ in ends:
-        label_y.append(max(ey, label_y[-1] + 16) if label_y else ey)
-    shift = max(0.0, label_y[-1] - (TOP2 + H2))
-    for (_, _, login, total), ly in zip(ends, label_y):
-        ly -= shift
-        out.append(f'<text class="val t1" x="{x(today) + 10:.1f}" y="{ly + 4:.1f}">{total:,}</text>')
+def x_scale(start: date, end: date):
+    span = max((end - start).days, 1)
+    return lambda d: L + PW * (d - start).days / span
+
+
+def draw_grid(out: list[str], y, step: int, ymax: int) -> None:
+    for v in range(0, ymax + 1, step):
+        yy = y(v)
+        out.append(f'<line class="{"axis" if v == 0 else "grid"}" x1="{L}" x2="{L + PW}" '
+                   f'y1="{yy:.1f}" y2="{yy:.1f}" stroke-width="1"/>')
+        out.append(f'<text class="small t2" x="{L - 8}" y="{yy + 4:.1f}" text-anchor="end">{v:,}</text>')
+
+
+def draw_x_axis(out: list[str], base: float, x, ticks: list[date], fmt: str) -> None:
+    for d in ticks:
+        out.append(f'<text class="small t2" x="{x(d):.1f}" y="{base + 18:.1f}" '
+                   f'text-anchor="middle">{d.strftime(fmt)}</text>')
+
+
+def render_org_svg(dates: dict[str, list[date]], today: date) -> str:
+    """Whole organization: cumulative commits since the first commit."""
+    top, h = 44, 130
+    H = top + h + 48
+    all_days = [d for v in dates.values() for d in v]
+    out = svg_open(H, f"Cumulative commits over time across the {GH_ORG} organization")
+    out.append(f'<text class="small t2" x="20" y="24">Cumulative commits across public {GH_ORG} '
+               "repositories · AI agents, bots and imported upstream history excluded</text>")
+    if all_days:
+        start = min(all_days)
+        x = x_scale(start, today)
+        y, step, ymax = y_scale(top, h, len(all_days))
+        draw_grid(out, y, step, ymax)
+        pts, total = cumulative_points(all_days, start, today, x, y)
+        out.append(f'<polygon class="area" points="{x(start):.1f},{y(0):.1f} {pts} {x(today):.1f},{y(0):.1f}"/>')
+        out.append(f'<polyline class="line total" points="{pts}"/>')
+        out.append(f'<circle class="totalf ring" cx="{x(today):.1f}" cy="{y(total):.1f}" r="4" stroke-width="2"/>')
+        out.append(f'<text class="val t1" x="{x(today) + 10:.1f}" y="{y(total) + 4:.1f}">{total:,}</text>')
         out.append(f'<text class="small t2" x="{x(today) + 16 + 8 * len(f"{total:,}"):.1f}" '
-                   f'y="{ly + 4:.1f}">{escape(login)}</text>')
-    x_axis(TOP2 + H2, x2, time_ticks(start2, today))
-
+                   f'y="{y(total) + 4:.1f}">commits · {len(dates)} people</text>')
+        draw_x_axis(out, top + h, x, time_ticks(start, today), "%b %y")
     out.append(f'<text class="small t2" x="{W - 20}" y="{H - 12}" text-anchor="end">'
                f'Updated {today.strftime("%-d %b %Y")}</text>')
     out.append("</svg>")
     return "\n".join(out) + "\n"
 
 
+def academic_year(d: date) -> int:
+    """Start year of the Sep-Aug academic year containing d."""
+    return d.year if d.month >= 9 else d.year - 1
+
+
+def ay_label(y: int) -> str:
+    return f"{y}/{str(y + 1)[-2:]}"
+
+
+def render_year_svg(dates: dict[str, list[date]], ay: int, today: date) -> tuple[str, list]:
+    """Top contributors within one academic year (1 Sep ay - 31 Aug ay+1)."""
+    start, end = date(ay, 9, 1), date(ay + 1, 8, 31)
+    last = min(end, today)                   # the current year's lines stop today
+    window = {k: [d for d in v if start <= d <= end] for k, v in dates.items()}
+    window = {k: v for k, v in window.items() if v}
+    ranked = sorted(window, key=lambda k: (-len(window[k]), k.lower()))[:TOP_N]
+
+    # Legend (always present for >= 2 series), wrapping onto extra rows if needed
+    legend, lx, row = [], 20, 0
+    for i, login in enumerate(ranked):
+        w = 20 + 7.4 * len(login) + 22
+        if lx + w > W - 20 and lx > 20:
+            lx, row = 20, row + 1
+        legend.append((i, login, lx, 24 + 20 * row))
+        lx += w
+    top, h = 50 + 20 * row, 200
+    H = top + h + 48
+    out = svg_open(H, f"Cumulative commits of the top {len(ranked)} contributors to {GH_ORG} "
+                      f"in academic year {ay_label(ay)}")
+    for i, login, lx, ty in legend:
+        out.append(f'<rect class="f{i}" x="{lx}" y="{ty - 6}" width="14" height="4" rx="2"/>')
+        out.append(f'<text class="small t1" x="{lx + 20}" y="{ty}">{escape(login)}</text>')
+
+    x = x_scale(start, end)
+    y, step, ymax = y_scale(top, h, max(len(window[k]) for k in ranked))
+    draw_grid(out, y, step, ymax)
+    ends = []
+    for i, login in enumerate(ranked):
+        pts, total = cumulative_points(window[login], start, last, x, y)
+        out.append(f'<polyline class="line s{i}" points="{pts}"/>')
+        ends.append((y(total), i, login, total))
+    for ey, i, _, _ in ends:
+        out.append(f'<circle class="f{i} ring" cx="{x(last):.1f}" cy="{ey:.1f}" r="4" stroke-width="2"/>')
+    ends.sort()                              # top first; nudge labels apart
+    label_y: list[float] = []
+    for ey, *_ in ends:
+        label_y.append(max(ey, label_y[-1] + 16) if label_y else ey)
+    shift = max(0.0, label_y[-1] - (top + h))
+    for (_, _, login, total), ly in zip(ends, label_y):
+        ly -= shift
+        out.append(f'<text class="val t1" x="{x(last) + 10:.1f}" y="{ly + 4:.1f}">{total:,}</text>')
+        out.append(f'<text class="small t2" x="{x(last) + 16 + 8 * len(f"{total:,}"):.1f}" '
+                   f'y="{ly + 4:.1f}">{escape(login)}</text>')
+    ticks = [date(ay + (m < 9), m, 1) for m in (9, 11, 1, 3, 5, 7)]
+    draw_x_axis(out, top + h, x, ticks, "%b %y")
+    out.append("</svg>")
+    return "\n".join(out) + "\n", [(k, len(window[k])) for k in ranked]
+
+
+def year_sections(years: list[int], today: date) -> str:
+    """Collapsible <details> per academic year, newest first and open."""
+    blocks = []
+    for n, ay in enumerate(sorted(years, reverse=True)):
+        slug = ay_label(ay).replace("/", "-")
+        note = " · in progress" if ay == academic_year(today) else ""
+        blocks.append(
+            f'<details{" open" if n == 0 else ""}>\n'
+            f"<summary><b>{ay_label(ay)}</b>{note}</summary>\n<br/>\n"
+            f'<img src="{RAW}/stats/top-{slug}.svg" alt="Top contributors in {ay_label(ay)}" width="760"/>\n'
+            "</details>")
+    return "\n\n".join(blocks)
+
+
+def update_readme(sections: str) -> None:
+    text = README.read_text()
+    a, b = text.index(YEARS_START) + len(YEARS_START), text.index(YEARS_END)
+    README.write_text(text[:a] + "\n" + sections + "\n" + text[b:])
+
+
 def main() -> None:
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     STATS.mkdir(exist_ok=True)
+    today = datetime.now(timezone.utc).date()
 
     hf = hf_stats()
     (STATS / "hf.json").write_text(json.dumps(hf, indent=2) + "\n")
     print("HF:", hf)
 
     dates = gh_commit_dates(token)
-    (STATS / "contributors.svg").write_text(render_svg(dates))
-    top = sorted(dates, key=lambda k: -len(dates[k]))[:TOP_N]
-    print("Top contributors (all time):", [(k, len(dates[k])) for k in top])
+    (STATS / "activity.svg").write_text(render_org_svg(dates, today))
+
+    years = sorted({academic_year(d) for v in dates.values() for d in v})
+    for old in STATS.glob("top-*.svg"):
+        old.unlink()
+    for ay in years:
+        svg, top = render_year_svg(dates, ay, today)
+        (STATS / f"top-{ay_label(ay).replace('/', '-')}.svg").write_text(svg)
+        print(ay_label(ay), top)
+    update_readme(year_sections(years, today))
 
 
 if __name__ == "__main__":

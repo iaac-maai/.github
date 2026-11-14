@@ -57,10 +57,34 @@ Each course has one main repository. Student and team work lives in its own repo
 ## Activity over time
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/contributors.svg" alt="Cumulative commits over time in the iaac-maai organization and for its top contributors" width="760"/>
-  <br/>
-  <sub>Cumulative commits across all public repositories in the organization, refreshed daily by a GitHub Action. AI agents, bots and history imported from upstream projects are excluded.</sub>
+  <img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/activity.svg" alt="Cumulative commits over time in the iaac-maai organization" width="760"/>
 </div>
+
+### Top contributors per academic year
+
+Click a year to open it.
+
+<!-- years:start -->
+<details open>
+<summary><b>2026/27</b> · in progress</summary>
+<br/>
+<img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2026-27.svg" alt="Top contributors in 2026/27" width="760"/>
+</details>
+
+<details>
+<summary><b>2025/26</b></summary>
+<br/>
+<img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2025-26.svg" alt="Top contributors in 2025/26" width="760"/>
+</details>
+
+<details>
+<summary><b>2024/25</b></summary>
+<br/>
+<img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2024-25.svg" alt="Top contributors in 2024/25" width="760"/>
+</details>
+<!-- years:end -->
+
+<sub>Cumulative commits across all public repositories in the organization, refreshed daily by a GitHub Action. Academic years run from September to August. AI agents, bots and history imported from upstream projects are excluded.</sub>
 
 <!-- Badges -->
 [models-badge]: https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhuggingface.co%2Fapi%2Forganizations%2Fiaac-maai%2Foverview&query=%24.numModels&label=models&color=FFD21E&logo=huggingface&style=for-the-badge

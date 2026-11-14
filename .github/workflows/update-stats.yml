@@ -34,7 +34,7 @@ jobs:
 
       - name: Commit if changed
         run: |
-          git add stats
+          git add stats profile
           if git diff --cached --quiet; then
             echo "No changes."
             exit 0

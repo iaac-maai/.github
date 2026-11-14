@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="298" viewBox="0 0 760 298" role="img" aria-label="Cumulative commits of the top 5 contributors to iaac-maai in academic year 2024/25">
+<style>
+.bg{fill:#ffffff} .t1{fill:#1f2328} .t2{fill:#59636e} .grid{stroke:#eaeef2} .axis{stroke:#d1d9e0} .ring{stroke:#ffffff} .total{stroke:#1f2328} .totalf{fill:#1f2328} .area{fill:#1f2328;opacity:.06}
+.s0{stroke:#2a78d6} .f0{fill:#2a78d6}
+.s1{stroke:#eb6834} .f1{fill:#eb6834}
+.s2{stroke:#1baf7a} .f2{fill:#1baf7a}
+.s3{stroke:#eda100} .f3{fill:#eda100}
+.s4{stroke:#e87ba4} .f4{fill:#e87ba4}
+@media (prefers-color-scheme: dark){
+  .bg{fill:#0d1117} .t1{fill:#e6edf3} .t2{fill:#9198a1} .grid{stroke:#1f252c} .axis{stroke:#30363d} .ring{stroke:#0d1117} .total{stroke:#e6edf3} .totalf{fill:#e6edf3} .area{fill:#e6edf3;opacity:.08}
+  .s0{stroke:#3987e5} .f0{fill:#3987e5}
+  .s1{stroke:#d95926} .f1{fill:#d95926}
+  .s2{stroke:#199e70} .f2{fill:#199e70}
+  .s3{stroke:#c98500} .f3{fill:#c98500}
+  .s4{stroke:#d55181} .f4{fill:#d55181}
+}
+text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif} .small{font-size:12px} .val{font-size:12px;font-weight:600}
+.line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+</style>
+<rect class="bg" width="760" height="298" rx="10"/>
+<rect class="f0" x="20" y="18" width="14" height="4" rx="2"/>
+<text class="small t1" x="40" y="24">STASYA00</text>
+<rect class="f1" x="121.2" y="18" width="14" height="4" rx="2"/>
+<text class="small t1" x="141.2" y="24">NouhailaElmalouli</text>
+<rect class="f2" x="289.0" y="18" width="14" height="4" rx="2"/>
+<text class="small t1" x="309.0" y="24">ankaramy</text>
+<rect class="f3" x="390.2" y="18" width="14" height="4" rx="2"/>
+<text class="small t1" x="410.2" y="24">ELENI-NTAGKOULI</text>
+<rect class="f4" x="543.2" y="18" width="14" height="4" rx="2"/>
+<text class="small t1" x="563.2" y="24">marcnavarrete7</text>
+<line class="axis" x1="56" x2="584" y1="250.0" y2="250.0" stroke-width="1"/>
+<text class="small t2" x="48" y="254.0" text-anchor="end">0</text>
+<line class="grid" x1="56" x2="584" y1="183.3" y2="183.3" stroke-width="1"/>
+<text class="small t2" x="48" y="187.3" text-anchor="end">10</text>
+<line class="grid" x1="56" x2="584" y1="116.7" y2="116.7" stroke-width="1"/>
+<text class="small t2" x="48" y="120.7" text-anchor="end">20</text>
+<line class="grid" x1="56" x2="584" y1="50.0" y2="50.0" stroke-width="1"/>
+<text class="small t2" x="48" y="54.0" text-anchor="end">30</text>
+<polyline class="line s0" points="56.0,250.0 262.0,250.0 262.0,223.3 263.4,223.3 263.4,163.3 266.3,163.3 266.3,156.7 267.8,156.7 267.8,110.0 584.0,110.0"/>
+<polyline class="line s1" points="56.0,250.0 331.6,250.0 331.6,183.3 584.0,183.3"/>
+<polyline class="line s2" points="56.0,250.0 330.2,250.0 330.2,223.3 584.0,223.3"/>
+<polyline class="line s3" points="56.0,250.0 330.2,250.0 330.2,223.3 584.0,223.3"/>
+<polyline class="line s4" points="56.0,250.0 331.6,250.0 331.6,223.3 584.0,223.3"/>
+<circle class="f0 ring" cx="584.0" cy="110.0" r="4" stroke-width="2"/>
+<circle class="f1 ring" cx="584.0" cy="183.3" r="4" stroke-width="2"/>
+<circle class="f2 ring" cx="584.0" cy="223.3" r="4" stroke-width="2"/>
+<circle class="f3 ring" cx="584.0" cy="223.3" r="4" stroke-width="2"/>
+<circle class="f4 ring" cx="584.0" cy="223.3" r="4" stroke-width="2"/>
+<text class="val t1" x="594.0" y="108.7">21</text>
+<text class="small t2" x="616.0" y="108.7">STASYA00</text>
+<text class="val t1" x="594.0" y="182.0">10</text>
+<text class="small t2" x="616.0" y="182.0">NouhailaElmalouli</text>
+<text class="val t1" x="594.0" y="222.0">4</text>
+<text class="small t2" x="608.0" y="222.0">ankaramy</text>
+<text class="val t1" x="594.0" y="238.0">4</text>
+<text class="small t2" x="608.0" y="238.0">ELENI-NTAGKOULI</text>
+<text class="val t1" x="594.0" y="254.0">4</text>
+<text class="small t2" x="608.0" y="254.0">marcnavarrete7</text>
+<text class="small t2" x="56.0" y="268.0" text-anchor="middle">Sep 24</text>
+<text class="small t2" x="144.5" y="268.0" text-anchor="middle">Nov 24</text>
+<text class="small t2" x="233.0" y="268.0" text-anchor="middle">Jan 25</text>
+<text class="small t2" x="318.5" y="268.0" text-anchor="middle">Mar 25</text>
+<text class="small t2" x="407.0" y="268.0" text-anchor="middle">May 25</text>
+<text class="small t2" x="495.5" y="268.0" text-anchor="middle">Jul 25</text>
+</svg>
