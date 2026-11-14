@@ -169,12 +169,19 @@ def render_svg(dates: dict[str, list[date]]) -> str:
     if not all_days:
         return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="120">'
                 f'<text x="20" y="60" font-family="{font}">No activity yet.</text></svg>\n')
-    ranked = sorted(dates, key=lambda k: (-len(dates[k]), k.lower()))[:TOP_N]
     start = min(all_days)
+    # Panel 2 only looks at the last 12 months (rolling window)
+    start2 = max(start, today - timedelta(days=365))
+    recent = {k: [d for d in v if d >= start2] for k, v in dates.items()}
+    recent = {k: v for k, v in recent.items() if v}
+    ranked = sorted(recent, key=lambda k: (-len(recent[k]), k.lower()))[:TOP_N]
     span = max((today - start).days, 1)
 
     def x(d: date) -> float:
         return L + pw * (d - start).days / span
+
+    def x2(d: date) -> float:
+        return L + pw * (d - start2).days / max((today - start2).days, 1)
 
     def y_scale(top: int, h: int, peak: int):
         step = nice_step(peak, 3 if h < 150 else 4)
@@ -211,11 +218,9 @@ def render_svg(dates: dict[str, list[date]]) -> str:
                        f'y1="{yy:.1f}" y2="{yy:.1f}" stroke-width="1"/>')
             out.append(f'<text class="small t2" x="{L - 8}" y="{yy + 4:.1f}" text-anchor="end">{v:,}</text>')
 
-    ticks = time_ticks(start, today)
-
-    def x_axis(base: float) -> None:
+    def x_axis(base: float, xf, ticks: list[date]) -> None:
         for d in ticks:
-            out.append(f'<text class="small t2" x="{x(d):.1f}" y="{base + 18:.1f}" '
+            out.append(f'<text class="small t2" x="{xf(d):.1f}" y="{base + 18:.1f}" '
                        f'text-anchor="middle">{d.strftime("%b %y")}</text>')
 
     # Panel 1: whole organization (single series: the heading names it, no legend)
@@ -229,12 +234,16 @@ def render_svg(dates: dict[str, list[date]]) -> str:
     out.append(f'<text class="val t1" x="{x(today) + 10:.1f}" y="{y1(total) + 4:.1f}">{total:,}</text>')
     out.append(f'<text class="small t2" x="{x(today) + 16 + 8 * len(f"{total:,}"):.1f}" '
                f'y="{y1(total) + 4:.1f}">commits · {len(dates)} people</text>')
-    x_axis(TOP1 + H1)
+    x_axis(TOP1 + H1, x, time_ticks(start, today))
 
     # Panel 2: top contributors (legend + direct end labels)
-    peak = max(len(dates[k]) for k in ranked)
+    if not ranked:
+        out.append(f'<text class="small t2" x="20" y="{TOP2}">No commits in the last 12 months.</text>')
+        out.append("</svg>")
+        return "\n".join(out) + "\n"
+    peak = max(len(recent[k]) for k in ranked)
     y2, step2, ymax2 = y_scale(TOP2, H2, peak)
-    out.append(f'<text class="h t1" x="20" y="{TOP2 - 44}">Top {len(ranked)} contributors</text>')
+    out.append(f'<text class="h t1" x="20" y="{TOP2 - 44}">Top {len(ranked)} contributors · last 12 months</text>')
     lx = 20
     for i, login in enumerate(ranked):
         out.append(f'<rect class="f{i}" x="{lx}" y="{TOP2 - 30}" width="14" height="4" rx="2"/>')
@@ -243,7 +252,7 @@ def render_svg(dates: dict[str, list[date]]) -> str:
     grid(TOP2, H2, y2, step2, ymax2)
     ends = []
     for i, login in enumerate(ranked):
-        pts, total = cumulative_points(dates[login], start, today, x, y2)
+        pts, total = cumulative_points(recent[login], start2, today, x2, y2)
         out.append(f'<polyline class="line s{i}" points="{pts}"/>')
         ends.append((y2(total), i, login, total))
     for ey, i, _, _ in ends:
@@ -258,7 +267,7 @@ def render_svg(dates: dict[str, list[date]]) -> str:
         out.append(f'<text class="val t1" x="{x(today) + 10:.1f}" y="{ly + 4:.1f}">{total:,}</text>')
         out.append(f'<text class="small t2" x="{x(today) + 16 + 8 * len(f"{total:,}"):.1f}" '
                    f'y="{ly + 4:.1f}">{escape(login)}</text>')
-    x_axis(TOP2 + H2)
+    x_axis(TOP2 + H2, x2, time_ticks(start2, today))
 
     out.append(f'<text class="small t2" x="{W - 20}" y="{H - 12}" text-anchor="end">'
                f'Updated {today.strftime("%-d %b %Y")}</text>')
@@ -277,7 +286,7 @@ def main() -> None:
     dates = gh_commit_dates(token)
     (STATS / "contributors.svg").write_text(render_svg(dates))
     top = sorted(dates, key=lambda k: -len(dates[k]))[:TOP_N]
-    print("Top contributors:", [(k, len(dates[k])) for k in top])
+    print("Top contributors (all time):", [(k, len(dates[k])) for k in top])
 
 
 if __name__ == "__main__":
