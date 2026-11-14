@@ -33,11 +33,18 @@ This is the GitHub organization of the **MaAI** programme at IAAC, Barcelona. It
 
 Each course has one main repository. Student and team work lives in its own repository inside this organization and is linked into the course repository as a git submodule.
 
-| Term | Course | Repository | Contents |
-|---|---|---|---|
-| 1 | **AI Methods I**: Machine Learning for the Built Environment | [![ai-methods-1-2026][repo1-badge]][repo1] | Lecture notebooks (Days 1 to 4), team submissions and the hackathon |
-| 1 | **Operable Futures**: AI Systems for AEC (Research Studio, Smart Construction) | [![operable_futures_research_studio_2026][repo2-badge]][repo2] | Studio brief and team projects under `projects/` |
-| 2 | **AI Methods II**: Deep Learning for Urban Tech | *coming soon* | |
+### Term 1 · Smart Construction
+
+| Course | Repository | Contents |
+|---|---|---|
+| **AI Methods I**: Machine Learning for the Built Environment | [![ai-methods-1-2026][repo1-badge]][repo1] | Lecture notebooks (Days 1 to 4), team submissions and the hackathon |
+| **Operable Futures**: AI Systems for AEC (Research Studio) | [![operable_futures_research_studio_2026][repo2-badge]][repo2] | Studio brief and team projects under `projects/` |
+
+### Term 2 · Urban Tech
+
+| Course | Repository | Contents |
+|---|---|---|
+| **AI Methods II**: Deep Learning for Urban Tech | *coming soon* | |
 
 ## Explore
 
