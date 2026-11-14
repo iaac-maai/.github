@@ -54,12 +54,12 @@ Each course has one main repository. Student and team work lives in its own repo
 
 ---
 
-## Top contributors
+## Activity over time
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/contributors.svg" alt="Top contributors to the iaac-maai organization" width="760"/>
+  <img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/contributors.svg" alt="Cumulative commits over time in the iaac-maai organization and for its top contributors" width="760"/>
   <br/>
-  <sub>Commits across all public repositories in the organization, refreshed daily by a GitHub Action. AI agents and bots are excluded.</sub>
+  <sub>Cumulative commits across all public repositories in the organization, refreshed daily by a GitHub Action. AI agents, bots and history imported from upstream projects are excluded.</sub>
 </div>
 
 <!-- Badges -->
