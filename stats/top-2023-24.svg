@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="298" viewBox="0 0 760 298" role="img" aria-label="Cumulative commits of the top 1 contributors to iaac-maai in academic year 2023/24">
+<style>
+.bg{fill:#ffffff} .t1{fill:#1f2328} .t2{fill:#59636e} .grid{stroke:#eaeef2} .axis{stroke:#d1d9e0} .ring{stroke:#ffffff} .total{stroke:#1f2328} .totalf{fill:#1f2328} .area{fill:#1f2328;opacity:.06}
+.s0{stroke:#2a78d6} .f0{fill:#2a78d6}
+.s1{stroke:#eb6834} .f1{fill:#eb6834}
+.s2{stroke:#1baf7a} .f2{fill:#1baf7a}
+.s3{stroke:#eda100} .f3{fill:#eda100}
+.s4{stroke:#e87ba4} .f4{fill:#e87ba4}
+@media (prefers-color-scheme: dark){
+  .bg{fill:#0d1117} .t1{fill:#e6edf3} .t2{fill:#9198a1} .grid{stroke:#1f252c} .axis{stroke:#30363d} .ring{stroke:#0d1117} .total{stroke:#e6edf3} .totalf{fill:#e6edf3} .area{fill:#e6edf3;opacity:.08}
+  .s0{stroke:#3987e5} .f0{fill:#3987e5}
+  .s1{stroke:#d95926} .f1{fill:#d95926}
+  .s2{stroke:#199e70} .f2{fill:#199e70}
+  .s3{stroke:#c98500} .f3{fill:#c98500}
+  .s4{stroke:#d55181} .f4{fill:#d55181}
+}
+text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif} .small{font-size:12px} .val{font-size:12px;font-weight:600}
+.line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+</style>
+<rect class="bg" width="760" height="298" rx="10"/>
+<rect class="f0" x="20" y="18" width="14" height="4" rx="2"/>
+<text class="small t1" x="40" y="24">STASYA00</text>
+<line class="axis" x1="56" x2="584" y1="250.0" y2="250.0" stroke-width="1"/>
+<text class="small t2" x="48" y="254.0" text-anchor="end">0</text>
+<line class="grid" x1="56" x2="584" y1="200.0" y2="200.0" stroke-width="1"/>
+<text class="small t2" x="48" y="204.0" text-anchor="end">2</text>
+<line class="grid" x1="56" x2="584" y1="150.0" y2="150.0" stroke-width="1"/>
+<text class="small t2" x="48" y="154.0" text-anchor="end">4</text>
+<line class="grid" x1="56" x2="584" y1="100.0" y2="100.0" stroke-width="1"/>
+<text class="small t2" x="48" y="104.0" text-anchor="end">6</text>
+<line class="grid" x1="56" x2="584" y1="50.0" y2="50.0" stroke-width="1"/>
+<text class="small t2" x="48" y="54.0" text-anchor="end">8</text>
+<polyline class="line s0" points="56.0,250.0 222.4,250.0 222.4,225.0 235.4,225.0 235.4,150.0 236.8,150.0 236.8,75.0 404.6,75.0 404.6,50.0 584.0,50.0"/>
+<circle class="f0 ring" cx="584.0" cy="50.0" r="4" stroke-width="2"/>
+<text class="val t1" x="594.0" y="54.0">8</text>
+<text class="small t2" x="608.0" y="54.0">STASYA00</text>
+<text class="small t2" x="56.0" y="268.0" text-anchor="middle">Sep 23</text>
+<text class="small t2" x="144.2" y="268.0" text-anchor="middle">Nov 23</text>
+<text class="small t2" x="232.5" y="268.0" text-anchor="middle">Jan 24</text>
+<text class="small t2" x="319.3" y="268.0" text-anchor="middle">Mar 24</text>
+<text class="small t2" x="407.5" y="268.0" text-anchor="middle">May 24</text>
+<text class="small t2" x="495.8" y="268.0" text-anchor="middle">Jul 24</text>
+</svg>

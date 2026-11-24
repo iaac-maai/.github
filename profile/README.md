@@ -82,6 +82,12 @@ Click a year to open it.
 <br/>
 <img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2024-25.svg" alt="Top contributors in 2024/25" width="760"/>
 </details>
+
+<details>
+<summary><b>2023/24</b></summary>
+<br/>
+<img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2023-24.svg" alt="Top contributors in 2023/24" width="760"/>
+</details>
 <!-- years:end -->
 
 <sub>Commits across all public repositories in the organization, accumulated within each academic year (September to August) and reset to zero every 1 September. Refreshed daily by a GitHub Action. AI agents, bots and history imported from upstream projects are excluded.</sub>
