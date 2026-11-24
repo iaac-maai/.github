@@ -210,25 +210,42 @@ def draw_x_axis(out: list[str], base: float, x, ticks: list[date], fmt: str) -> 
 
 
 def render_org_svg(dates: dict[str, list[date]], today: date) -> str:
-    """Whole organization: cumulative commits since the first commit."""
-    top, h = 44, 130
+    """Whole organization: commits accumulated within each academic year (resets every 1 Sep)."""
+    top, h = 64, 130
     H = top + h + 48
     all_days = [d for v in dates.values() for d in v]
-    out = svg_open(H, f"Cumulative commits over time across the {GH_ORG} organization")
-    out.append(f'<text class="small t2" x="20" y="24">Cumulative commits across public {GH_ORG} '
-               "repositories · AI agents, bots and imported upstream history excluded</text>")
+    out = svg_open(H, f"Commits per academic year across the {GH_ORG} organization, "
+                      "accumulating from zero every September")
+    out.append(f'<text class="small t2" x="20" y="24">Commits across public {GH_ORG} repositories, '
+               "accumulated per academic year (resets every 1 September)</text>")
+    out.append('<text class="small t2" x="20" y="42">AI agents, bots and imported upstream '
+               "history excluded</text>")
     if all_days:
         start = min(all_days)
         x = x_scale(start, today)
-        y, step, ymax = y_scale(top, h, len(all_days))
+        years = range(academic_year(start), academic_year(today) + 1)
+        per_year = {ay: [d for d in all_days if academic_year(d) == ay] for ay in years}
+        y, step, ymax = y_scale(top, h, max(len(v) for v in per_year.values()))
         draw_grid(out, y, step, ymax)
-        pts, total = cumulative_points(all_days, start, today, x, y)
-        out.append(f'<polygon class="area" points="{x(start):.1f},{y(0):.1f} {pts} {x(today):.1f},{y(0):.1f}"/>')
-        out.append(f'<polyline class="line total" points="{pts}"/>')
+        for ay in years:
+            seg_start = max(start, date(ay, 9, 1))
+            seg_end = min(today, date(ay + 1, 8, 31))
+            if seg_start != start:  # year boundary: divider
+                out.append(f'<line class="grid" x1="{x(seg_start):.1f}" x2="{x(seg_start):.1f}" '
+                           f'y1="{top - 8}" y2="{y(0):.1f}" stroke-width="1" stroke-dasharray="3 3"/>')
+            out.append(f'<text class="small t2" x="{x(seg_start) + 6:.1f}" y="{top - 4}">'
+                       f'{ay_label(ay)} · {len(per_year[ay]):,}</text>')
+            pts, total = cumulative_points(per_year[ay], seg_start, seg_end, x, y)
+            out.append(f'<polygon class="area" points="{x(seg_start):.1f},{y(0):.1f} {pts} '
+                       f'{x(seg_end):.1f},{y(0):.1f}"/>')
+            out.append(f'<polyline class="line total" points="{pts}"/>')
+        cur = academic_year(today)
+        total = len(per_year[cur])
+        people = sum(1 for v in dates.values() if any(academic_year(d) == cur for d in v))
         out.append(f'<circle class="totalf ring" cx="{x(today):.1f}" cy="{y(total):.1f}" r="4" stroke-width="2"/>')
         out.append(f'<text class="val t1" x="{x(today) + 10:.1f}" y="{y(total) + 4:.1f}">{total:,}</text>')
         out.append(f'<text class="small t2" x="{x(today) + 16 + 8 * len(f"{total:,}"):.1f}" '
-                   f'y="{y(total) + 4:.1f}">commits · {len(dates)} people</text>')
+                   f'y="{y(total) + 4:.1f}">commits · {people} people</text>')
         draw_x_axis(out, top + h, x, time_ticks(start, today), "%b %y")
     out.append(f'<text class="small t2" x="{W - 20}" y="{H - 12}" text-anchor="end">'
                f'Updated {today.strftime("%-d %b %Y")}</text>')

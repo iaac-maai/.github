@@ -84,7 +84,7 @@ Click a year to open it.
 </details>
 <!-- years:end -->
 
-<sub>Cumulative commits across all public repositories in the organization, refreshed daily by a GitHub Action. Academic years run from September to August. AI agents, bots and history imported from upstream projects are excluded.</sub>
+<sub>Commits across all public repositories in the organization, accumulated within each academic year (September to August) and reset to zero every 1 September. Refreshed daily by a GitHub Action. AI agents, bots and history imported from upstream projects are excluded.</sub>
 
 <!-- Badges -->
 [models-badge]: https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhuggingface.co%2Fapi%2Forganizations%2Fiaac-maai%2Foverview&query=%24.numModels&label=models&color=FFD21E&logo=huggingface&style=for-the-badge
