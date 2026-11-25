@@ -14,7 +14,6 @@ from __future__ import annotations
 import json
 import math
 import os
-import re
 import urllib.error
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
@@ -29,14 +28,14 @@ STATS = ROOT / "stats"
 
 # AI agents and automation accounts never count as contributors.
 # Only the commit author is counted, so Co-Authored-By trailers never add
-# anyone; this list covers agents that author commits themselves.
+# anyone; this list covers agents that author commits themselves. Accounts are
+# matched by exact name: students can have usernames ending in "-bot" or "-agent".
 EXCLUDED_LOGINS = {
     "claude", "anthropic-claude", "claude-code", "copilot", "copilot-swe-agent",
     "devin-ai-integration", "cursor-agent", "cursoragent", "github-actions",
-    "dependabot", "renovate", "openai-codex", "codex", "chatgpt-codex-connector",
+    "dependabot", "renovate", "renovate-bot", "openai-codex", "codex", "chatgpt-codex-connector",
     "sweep-ai", "aider", "gemini-code-assist", "google-labs-jules",
 }
-EXCLUDED_PATTERN = re.compile(r"(\[bot\]|bot|agent|ai-assistant)$", re.IGNORECASE)
 
 # Categorical slots 1-5 of the dataviz reference palette (fixed order, light / dark).
 SERIES_LIGHT = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]
@@ -76,11 +75,14 @@ def is_human(user: dict | None) -> bool:
     login = (user.get("login") or "").lower()
     if not login or user.get("type") != "User":
         return False
-    return login not in EXCLUDED_LOGINS and not EXCLUDED_PATTERN.search(login)
+    return login not in EXCLUDED_LOGINS and not login.endswith("[bot]")
 
 
 def gh_commit_dates(token: str | None) -> dict[str, list[date]]:
-    """Commit dates per human author across public org repos (default branches)."""
+    """Commit dates per human author across public org repos (default branches).
+
+    Archived repos count; forks don't. A commit that is in several repos counts once.
+    """
     repos, page = [], 1
     while True:
         batch = get_json(f"https://api.github.com/orgs/{GH_ORG}/repos"
@@ -91,26 +93,25 @@ def gh_commit_dates(token: str | None) -> dict[str, list[date]]:
         page += 1
 
     dates: dict[str, list[date]] = {}
+    seen: set[str] = set()
     for repo in repos:
-        if repo.get("private") or repo.get("fork") or repo.get("archived"):
+        if repo.get("private") or repo.get("fork"):
             continue
         if repo["name"] == ".github":  # the stats bot commits here
             continue
-        # Only count commits made after the repo was created in the org, so
-        # history imported from upstream projects (e.g. robosuite) is ignored.
-        since = repo["created_at"]
         page = 1
         while True:
             try:
                 batch = get_json(f"https://api.github.com/repos/{GH_ORG}/{repo['name']}"
-                                 f"/commits?since={since}&per_page=100&page={page}", token)
+                                 f"/commits?per_page=100&page={page}", token)
             except urllib.error.HTTPError as e:
                 if e.code == 409:  # empty repository
                     break
                 raise
             for c in batch:
-                if not is_human(c.get("author")):
+                if c["sha"] in seen or not is_human(c.get("author")):
                     continue
+                seen.add(c["sha"])
                 day = datetime.fromisoformat(
                     c["commit"]["author"]["date"].replace("Z", "+00:00")).date()
                 dates.setdefault(c["author"]["login"], []).append(day)
@@ -218,8 +219,8 @@ def render_org_svg(dates: dict[str, list[date]], today: date) -> str:
                       "accumulating from zero every September")
     out.append(f'<text class="small t2" x="20" y="24">Commits across public {GH_ORG} repositories, '
                "accumulated per academic year (resets every 1 September)</text>")
-    out.append('<text class="small t2" x="20" y="42">AI agents, bots and imported upstream '
-               "history excluded</text>")
+    out.append('<text class="small t2" x="20" y="42">AI agents, bots and forks '
+               "excluded · archived repositories included</text>")
     if all_days:
         start = min(all_days)
         x = x_scale(start, today)
