@@ -3,7 +3,8 @@
 Writes:
   stats/hf.json            totals for the iaac-maai Hugging Face org (read by shields.io badges)
   stats/activity.svg       cumulative commits over time, whole organization
-  stats/top-YYYY-YY.svg    top contributors per academic year (Sep-Aug)
+  stats/top-YYYY-YY.svg    how the top 5 changed in each academic year (Sep-Aug)
+  stats/*-static.svg       still copies of the charts, for visitors who prefer reduced motion
   profile/README.md        the per-year <details> sections between the years markers
 
 Standard library only. Set GITHUB_TOKEN to avoid API rate limits.
@@ -16,13 +17,14 @@ import math
 import os
 import urllib.error
 import urllib.request
+from bisect import bisect_right
 from datetime import date, datetime, timedelta, timezone
 from html import escape
 from pathlib import Path
 
 HF_ORG = "iaac-maai"
 GH_ORG = "iaac-maai"
-TOP_N = 5  # lines on the chart (categorical slots 1-5)
+TOP_N = 5  # size of the ranking shown on the yearly charts
 ROOT = Path(__file__).resolve().parent.parent
 STATS = ROOT / "stats"
 
@@ -37,9 +39,10 @@ EXCLUDED_LOGINS = {
     "sweep-ai", "aider", "gemini-code-assist", "google-labs-jules",
 }
 
-# Categorical slots 1-5 of the dataviz reference palette (fixed order, light / dark).
-SERIES_LIGHT = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]
-SERIES_DARK = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181"]
+# Categorical slots 1-8 of the dataviz reference palette (fixed order, light / dark).
+SERIES_LIGHT = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"]
+SERIES_DARK = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#008300", "#9085e9", "#e66767"]
+OTHER_LIGHT, OTHER_DARK = "#8c959f", "#6e7681"   # people beyond the 8 hues
 
 
 def get_json(url: str, token: str | None = None):
@@ -131,20 +134,6 @@ def nice_step(peak: int, ticks: int = 4) -> int:
     return int(10 * mag)
 
 
-def cumulative_points(days: list[date], start: date, today: date, x, y) -> tuple[str, int]:
-    """Step-after cumulative polyline from start to today."""
-    per_day: dict[date, int] = {}
-    for d in days:
-        per_day[d] = per_day.get(d, 0) + 1
-    pts, total = [(x(start), y(0))], 0
-    for d in sorted(per_day):
-        pts.append((x(d), y(total)))
-        total += per_day[d]
-        pts.append((x(d), y(total)))
-    pts.append((x(today), y(total)))
-    return " ".join(f"{px:.1f},{py:.1f}" for px, py in pts), total
-
-
 def time_ticks(start: date, today: date, max_ticks: int = 8) -> list[date]:
     """First-of-month ticks, thinned to every 1/2/3/6/12 months so labels never collide."""
     months = []
@@ -170,11 +159,11 @@ def svg_open(h: int, label: str) -> list[str]:
     css = [
         ".bg{fill:#ffffff} .t1{fill:#1f2328} .t2{fill:#59636e} .grid{stroke:#eaeef2} "
         ".axis{stroke:#d1d9e0} .ring{stroke:#ffffff} .total{stroke:#1f2328} .totalf{fill:#1f2328} .area{fill:#1f2328;opacity:.06}",
-        *[f".s{i}{{stroke:{c}}} .f{i}{{fill:{c}}}" for i, c in enumerate(SERIES_LIGHT)],
+        *[f".s{i}{{stroke:{c}}} .f{i}{{fill:{c}}}" for i, c in enumerate([*SERIES_LIGHT, OTHER_LIGHT])],
         "@media (prefers-color-scheme: dark){",
         "  .bg{fill:#0d1117} .t1{fill:#e6edf3} .t2{fill:#9198a1} .grid{stroke:#1f252c} "
         ".axis{stroke:#30363d} .ring{stroke:#0d1117} .total{stroke:#e6edf3} .totalf{fill:#e6edf3} .area{fill:#e6edf3;opacity:.08}",
-        *[f"  .s{i}{{stroke:{c}}} .f{i}{{fill:{c}}}" for i, c in enumerate(SERIES_DARK)],
+        *[f"  .s{i}{{stroke:{c}}} .f{i}{{fill:{c}}}" for i, c in enumerate([*SERIES_DARK, OTHER_DARK])],
         "}",
         f"text{{font-family:{FONT}}} .small{{font-size:12px}} .val{{font-size:12px;font-weight:600}}",
         ".line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}",
@@ -210,6 +199,130 @@ def draw_x_axis(out: list[str], base: float, x, ticks: list[date], fmt: str) -> 
                    f'text-anchor="middle">{d.strftime(fmt)}</text>')
 
 
+# -------------------------------------------------------------------- animation
+# GitHub shows the charts through <img>: no scripts, but CSS animations run.
+# Every element is drawn in its final state and the keyframes replay how it got
+# there, so without animation (or with reduced motion) the chart is complete.
+PLAY, HOLD = 12.0, 6.0         # seconds of replay, then seconds resting on the final state
+ROW = 18                       # line height of the counter strips
+
+
+def playback(days: list[date], start: date, end: date, extra: list[date] = []) -> tuple[list[date], list[float]]:
+    """Key dates and the moment (0-1) each one is reached during the replay.
+
+    Busy days get more screen time than quiet months. Only the playback speed
+    varies: the date axis itself stays linear.
+    """
+    per_day: dict[date, int] = {}
+    for d in days:
+        per_day[d] = per_day.get(d, 0) + 1
+    keys = {start, end, *extra}
+    for d in per_day:
+        keys |= {d, max(start, d - timedelta(days=1))}
+    ks = sorted(keys)
+    span = max((end - start).days, 1)
+    busy = sum(math.sqrt(n) for n in per_day.values()) or 1
+    times = [0.0]
+    for a, b in zip(ks, ks[1:]):
+        times.append(times[-1] + 0.2 * (b - a).days / span + 0.8 * math.sqrt(per_day.get(b, 0)) / busy)
+    total = times[-1] or 1
+    return ks, [t / total for t in times]
+
+
+def pct(t: float) -> str:
+    return f"{100 * t * PLAY / (PLAY + HOLD):.3f}%"
+
+
+class Motion:
+    """Collects keyframes; everything loops on the same clock."""
+
+    def __init__(self) -> None:
+        self.css: list[str] = []
+        self.n = 0
+
+    def add(self, frames: list[tuple[float, str]], timing: str = "linear") -> str:
+        """frames: (moment 0-1, declaration). Returns the class to put on the element."""
+        if frames[0][0] > 0:        # hold the first state until its moment comes
+            frames = [(0.0, frames[0][1]), *frames]
+        # A frame in the middle of a run of identical values adds nothing.
+        kept = [f for i, f in enumerate(frames)
+                if i in (0, len(frames) - 1) or not frames[i - 1][1] == f[1] == frames[i + 1][1]]
+        body = "".join(f"{pct(t)}{{{d}}}" for t, d in kept)
+        self.n += 1
+        self.css.append(f"@keyframes k{self.n}{{{body}to{{{frames[-1][1]}}}}}"
+                        f".a{self.n}{{animation:k{self.n} {PLAY + HOLD:g}s {timing} infinite}}")
+        return f"a{self.n}"
+
+    def style(self) -> str:
+        fade = ("@keyframes fade{0%{opacity:0}1.5%{opacity:1}97.5%{opacity:1}to{opacity:0}}"
+                f".fade{{animation:fade {PLAY + HOLD:g}s linear infinite}}")
+        return ("<style>@media (prefers-reduced-motion:no-preference){\n"
+                + "\n".join([fade, *self.css]) + "\n}</style>")
+
+
+def draw_line(out: list[str], mo: Motion, cls: str, pts: list[tuple[float, float]], times: list[float]) -> None:
+    """A line that draws itself, its tip following the same path as the dot."""
+    pts = [(round(px, 1), round(py, 1)) for px, py in pts]
+    run = [0.0]
+    for a, b in zip(pts, pts[1:]):
+        run.append(run[-1] + math.dist(a, b))
+    full = run[-1] + 1
+    a = mo.add([(t, f"stroke-dashoffset:{full - r:.1f}px") for t, r in zip(times, run)])
+    path = " ".join(f"{px},{py}" for px, py in pts)
+    out.append(f'<polyline class="line {cls} {a}" points="{path}" stroke-dasharray="{full:.1f}"/>')
+
+
+def moving(mo: Motion, pts: list[tuple[float, float]], times: list[float]) -> str:
+    """Attributes for a group that travels along pts and rests on the last one."""
+    a = mo.add([(t, f"transform:translate({px:.1f}px,{py:.1f}px)") for t, (px, py) in zip(times, pts)])
+    return f'class="{a}" transform="translate({pts[-1][0]:.1f} {pts[-1][1]:.1f})"'
+
+
+def ticking(rows: list[tuple[int, ...]], times: list[float]) -> tuple[list[tuple[int, ...]], list[float]]:
+    """Fill in the numbers between key dates so counters keep up with their dots (about 10 per second)."""
+    vals, ts = [rows[0]], [times[0]]
+    for a, b, t0, t1 in zip(rows, rows[1:], times, times[1:]):
+        n = max(1, min(int((t1 - t0) * PLAY * 10), max(abs(q - p) for p, q in zip(a, b))))
+        for j in range(1, n + 1):
+            vals.append(tuple(p + (q - p) * j // n for p, q in zip(a, b)))
+            ts.append(t0 + (t1 - t0) * j / n)
+    return vals, ts
+
+
+def draw_counter(out: list[str], mo: Motion, texts: list[str], times: list[float], x: int, anchor: str) -> None:
+    """Text that changes over time: a strip of values moved behind a one-line window."""
+    values = [t for i, t in enumerate(texts) if i == 0 or t != texts[i - 1]]
+    frames, row = [], -1
+    for i, (t, txt) in enumerate(zip(times, texts)):
+        row += i == 0 or txt != texts[i - 1]
+        frames.append((t, f"transform:translateY({-row * ROW}px)"))
+    a = mo.add(frames, "step-end")
+    out.append(f'<g clip-path="url(#win)"><g class="{a}" transform="translate(0 {-(len(values) - 1) * ROW})">')
+    for k, txt in enumerate(values):
+        out.append(f'<text x="{x}" y="{4 + k * ROW}" text-anchor="{anchor}">{txt}</text>')
+    out.append("</g></g>")
+
+
+WINDOW = '<defs><clipPath id="win"><rect x="0" y="-9" width="220" height="18"/></clipPath></defs>'
+
+
+def spread(ys: list[float], top: float, bottom: float, gap: float = 16) -> list[float]:
+    """Nudge label positions (given in ranking order) apart, keeping them inside the panel."""
+    out: list[float] = []
+    for v in ys:
+        out.append(max(v, out[-1] + gap) if out else max(v, top))
+    limit = bottom
+    for i in range(len(out) - 1, -1, -1):
+        out[i] = min(out[i], limit)
+        limit = out[i] - gap
+    return out
+
+
+def counts_at(days: list[date], keys: list[date]) -> list[int]:
+    ordered = sorted(days)
+    return [bisect_right(ordered, k) for k in keys]
+
+
 def render_org_svg(dates: dict[str, list[date]], today: date) -> str:
     """Whole organization: commits accumulated within each academic year (resets every 1 Sep)."""
     top, h = 64, 130
@@ -228,6 +341,13 @@ def render_org_svg(dates: dict[str, list[date]], today: date) -> str:
         per_year = {ay: [d for d in all_days if academic_year(d) == ay] for ay in years}
         y, step, ymax = y_scale(top, h, max(len(v) for v in per_year.values()))
         draw_grid(out, y, step, ymax)
+        bounds = [date(ay, 9, 1) for ay in years if date(ay, 9, 1) > start]
+        bounds += [b - timedelta(days=1) for b in bounds]
+        keys, times = playback(all_days, start, today, bounds)
+        when = dict(zip(keys, times))
+        mo = Motion()
+        marks: list[str] = []
+        tip, tip_t, labels, label_t = [], [], [], []
         for ay in years:
             seg_start = max(start, date(ay, 9, 1))
             seg_end = min(today, date(ay + 1, 8, 31))
@@ -236,17 +356,33 @@ def render_org_svg(dates: dict[str, list[date]], today: date) -> str:
                            f'y1="{top - 8}" y2="{y(0):.1f}" stroke-width="1" stroke-dasharray="3 3"/>')
             out.append(f'<text class="small t2" x="{x(seg_start) + 6:.1f}" y="{top - 4}">'
                        f'{ay_label(ay)} · {len(per_year[ay]):,}</text>')
-            pts, total = cumulative_points(per_year[ay], seg_start, seg_end, x, y)
-            out.append(f'<polygon class="area" points="{x(seg_start):.1f},{y(0):.1f} {pts} '
-                       f'{x(seg_end):.1f},{y(0):.1f}"/>')
-            out.append(f'<polyline class="line total" points="{pts}"/>')
-        cur = academic_year(today)
-        total = len(per_year[cur])
-        people = sum(1 for v in dates.values() if any(academic_year(d) == cur for d in v))
-        out.append(f'<circle class="totalf ring" cx="{x(today):.1f}" cy="{y(total):.1f}" r="4" stroke-width="2"/>')
-        out.append(f'<text class="val t1" x="{x(today) + 10:.1f}" y="{y(total) + 4:.1f}">{total:,}</text>')
-        out.append(f'<text class="small t2" x="{x(today) + 16 + 8 * len(f"{total:,}"):.1f}" '
-                   f'y="{y(total) + 4:.1f}">commits · {people} people</text>')
+            ks = [k for k in keys if seg_start <= k <= seg_end]
+            ts = [when[k] for k in ks]
+            cum = counts_at(per_year[ay], ks)
+            pts = [(x(k), y(c)) for k, c in zip(ks, cum)]
+            path = " ".join(f"{px:.1f},{py:.1f}" for px, py in pts)
+            width = max(x(seg_end) - x(seg_start), 0.1)
+            wipe = mo.add([(t, f"clip-path:inset(0 {100 - 100 * (px - x(seg_start)) / width:.1f}% 0 0)")
+                           for t, (px, _) in zip(ts, pts)])
+            marks.append(f'<polygon class="area {wipe}" points="{x(seg_start):.1f},{y(0):.1f} {path} '
+                         f'{x(seg_end):.1f},{y(0):.1f}"/>')
+            draw_line(marks, mo, "total", pts, ts)
+            if tip:                 # jump back to zero instead of sliding down
+                tip.append(pts[0])
+                tip_t.append(ts[0] - 1e-5)
+            first = {k: min(d for d in v if academic_year(d) == ay) for k, v in dates.items()
+                     if any(academic_year(d) == ay for d in v)}
+            people = counts_at(list(first.values()), ks)
+            tip += pts
+            tip_t += ts
+            for (c, n), t in zip(*ticking(list(zip(cum, people)), ts)):
+                label_t.append(t)
+                labels.append(f'<tspan class="val t1">{c:,}</tspan><tspan class="small t2"> commits · '
+                              f'{n} {"person" if n == 1 else "people"}</tspan>')
+        marks.append(f'<g {moving(mo, tip, tip_t)}><circle class="totalf ring" r="4" stroke-width="2"/>')
+        draw_counter(marks, mo, labels, label_t, 10, "start")
+        marks.append("</g>")
+        out += [WINDOW, mo.style(), '<g class="fade">', *marks, "</g>"]
         draw_x_axis(out, top + h, x, time_ticks(start, today), "%b %y")
     out.append(f'<text class="small t2" x="{W - 20}" y="{H - 12}" text-anchor="end">'
                f'Updated {today.strftime("%-d %b %Y")}</text>')
@@ -263,54 +399,123 @@ def ay_label(y: int) -> str:
     return f"{y}/{str(y + 1)[-2:]}"
 
 
+FADED = 0.3                    # lines of people who are outside the top at that moment
+
+
+def top_over_time(window: dict[str, list[date]], keys: list[date]) -> list[list[str]]:
+    """The top contributors on each key date, best first (ties: whoever got there first)."""
+    counts: dict[str, int] = {}
+    since: dict[str, date] = {}
+    events = sorted((d, k) for k, v in window.items() for d in v)
+    tops, i = [], 0
+    for key in keys:
+        while i < len(events) and events[i][0] <= key:
+            d, k = events[i]
+            counts[k] = counts.get(k, 0) + 1
+            since[k] = d
+            i += 1
+        tops.append(sorted(counts, key=lambda k: (-counts[k], since[k], k.lower()))[:TOP_N])
+    return tops
+
+
 def render_year_svg(dates: dict[str, list[date]], ay: int, today: date) -> tuple[str, list]:
-    """Top contributors within one academic year (1 Sep ay - 31 Aug ay+1)."""
+    """Top contributors within one academic year (1 Sep ay - 31 Aug ay+1), as they changed."""
     start, end = date(ay, 9, 1), date(ay + 1, 8, 31)
     last = min(end, today)                   # the current year's lines stop today
     window = {k: [d for d in v if start <= d <= end] for k, v in dates.items()}
     window = {k: v for k, v in window.items() if v}
-    ranked = sorted(window, key=lambda k: (-len(window[k]), k.lower()))[:TOP_N]
+
+    # Everyone who was in the top at some point gets a line
+    span = [start + timedelta(days=n) for n in range((last - start).days + 1)]
+    daily = top_over_time(window, span)
+    ranked = daily[-1]                       # the top today (or at the end of the year)
+    stay: dict[str, int] = {}                # days spent in the top, in order of first entry
+    for top_then in daily:
+        for k in top_then:
+            stay[k] = stay.get(k, 0) + 1
+    past = sorted((k for k in stay if k not in ranked), key=lambda k: -stay[k])
+    people = [*ranked, *past]
+    hued = set(people[:len(SERIES_LIGHT)])   # the rest share a neutral gray
+    slot = {k: i for i, k in enumerate(k for k in stay if k in hued)}
+    color = {k: slot.get(k, len(SERIES_LIGHT)) for k in people}
 
     # Legend (always present for >= 2 series), wrapping onto extra rows if needed
+    names = [(color[k], k) for k in people if k in hued]
+    if len(hued) < len(people):
+        names.append((len(SERIES_LIGHT), f"{len(people) - len(hued)} others"))
     legend, lx, row = [], 20, 0
-    for i, login in enumerate(ranked):
-        w = 20 + 7.4 * len(login) + 22
-        if lx + w > W - 20 and lx > 20:
+    for c, name in names:
+        w = 20 + 7.0 * len(name) + 18
+        if lx + w > W - 10 and lx > 20:
             lx, row = 20, row + 1
-        legend.append((i, login, lx, 24 + 20 * row))
+        legend.append((c, name, lx, 24 + 20 * row))
         lx += w
-    top, h = 50 + 20 * row, 200
-    H = top + h + 48
-    out = svg_open(H, f"Cumulative commits of the top {len(ranked)} contributors to {GH_ORG} "
-                      f"in academic year {ay_label(ay)}")
-    for i, login, lx, ty in legend:
-        out.append(f'<rect class="f{i}" x="{lx}" y="{ty - 6}" width="14" height="4" rx="2"/>')
-        out.append(f'<text class="small t1" x="{lx + 20}" y="{ty}">{escape(login)}</text>')
+    top, h = 54 + 20 * row, 220
+    H = top + h + 40
+    out = svg_open(H, f"How the top {TOP_N} contributors to {GH_ORG} changed during academic year "
+                      f"{ay_label(ay)}. Final ranking: "
+                      + ", ".join(f"{k} {len(window[k])}" for k in ranked))
+    for c, name, lx, ty in legend:
+        out.append(f'<rect class="f{c}" x="{lx:.0f}" y="{ty - 6}" width="14" height="4" rx="2"/>')
+        out.append(f'<text class="small t1" x="{lx + 20:.0f}" y="{ty}">{escape(name)}</text>')
 
-    x = x_scale(start, end)
+    axis_end = max(last, start + timedelta(days=30))   # a year in progress fills the chart
+    x = x_scale(start, axis_end)
     y, step, ymax = y_scale(top, h, max(len(window[k]) for k in ranked))
     draw_grid(out, y, step, ymax)
-    ends = []
-    for i, login in enumerate(ranked):
-        pts, total = cumulative_points(window[login], start, last, x, y)
-        out.append(f'<polyline class="line s{i}" points="{pts}"/>')
-        ends.append((y(total), i, login, total))
-    for ey, i, _, _ in ends:
-        out.append(f'<circle class="f{i} ring" cx="{x(last):.1f}" cy="{ey:.1f}" r="4" stroke-width="2"/>')
-    ends.sort()                              # top first; nudge labels apart
-    label_y: list[float] = []
-    for ey, *_ in ends:
-        label_y.append(max(ey, label_y[-1] + 16) if label_y else ey)
-    shift = max(0.0, label_y[-1] - (top + h))
-    for (_, _, login, total), ly in zip(ends, label_y):
-        ly -= shift
-        out.append(f'<text class="val t1" x="{x(last) + 10:.1f}" y="{ly + 4:.1f}">{total:,}</text>')
-        out.append(f'<text class="small t2" x="{x(last) + 16 + 8 * len(f"{total:,}"):.1f}" '
-                   f'y="{ly + 4:.1f}">{escape(login)}</text>')
-    ticks = [date(ay + (m < 9), m, 1) for m in (9, 11, 1, 3, 5, 7)]
-    draw_x_axis(out, top + h, x, ticks, "%b %y")
+    keys, times = playback([d for k in people for d in window[k]], start, last)
+    tops = top_over_time(window, keys)
+    cums = {k: counts_at(window[k], keys) for k in people}
+    spots = {k: [(x(d), y(c)) for d, c in zip(keys, cums[k])] for k in people}
+    mo = Motion()
+
+    def visible(k: str, off: float) -> str:
+        a = mo.add([(t, f"opacity:{1 if k in now else off}") for t, now in zip(times, tops)])
+        return f'class="{a}" opacity="{1 if k in ranked else off}"'
+
+    marks: list[str] = []
+    for k in reversed(people):               # current leaders are drawn last, on top
+        f0 = max(0, next(f for f, c in enumerate(cums[k]) if c) - 1)
+        marks.append(f"<g {visible(k, FADED)}>")
+        draw_line(marks, mo, f"s{color[k]}", spots[k][f0:], times[f0:])
+        marks.append("</g>")
+    for k in reversed(people):
+        marks.append(f'<g {visible(k, 0)}><g {moving(mo, spots[k], times)}>'
+                     f'<circle class="f{color[k]} ring" r="4" stroke-width="2"/></g></g>')
+    # Labels follow the dots, swapping places as people overtake each other
+    label = {k: [p[1] for p in spots[k]] for k in people}
+    for f, now in enumerate(tops):
+        for k, ly in zip(now, spread([spots[k][f][1] for k in now], top, top + h)):
+            label[k][f] = ly
+    num = round(7.2 * len(f"{max(c[-1] for c in cums.values()):,}"))
+    for k in people:
+        path = [(x(d), ly) for d, ly in zip(keys, label[k])]
+        marks.append(f'<g {visible(k, 0)}><g {moving(mo, path, times)}>'
+                     f'<rect class="f{color[k]}" x="10" y="-5" width="4" height="10" rx="2"/><g class="val t1">')
+        vals, ts = ticking([(c,) for c in cums[k]], times)
+        draw_counter(marks, mo, [f"{v[0]:,}" for v in vals], ts, 18 + num, "end")
+        marks.append(f'</g><text class="small t2" x="{24 + num}" y="4">{escape(k)}</text></g></g>')
+    out += [WINDOW, mo.style(), '<g class="fade">', *marks, "</g>"]
+    draw_x_axis(out, top + h, x, time_ticks(start, axis_end), "%b %y")
     out.append("</svg>")
-    return "\n".join(out) + "\n", [(k, len(window[k])) for k in ranked]
+    return "\n".join(out) + "\n", [(k, len(window[k])) for k in people]
+
+
+def write_chart(name: str, svg: str) -> None:
+    """Save the animated chart and a still copy for visitors who prefer reduced motion.
+
+    Browsers don't reliably pass that preference into <img>, so the README picks
+    the still copy itself with <picture>.
+    """
+    (STATS / f"{name}.svg").write_text(svg)
+    a = svg.find("<style>@media (prefers-reduced-motion")
+    b = svg.find("</style>", a) + len("</style>")
+    (STATS / f"{name}-static.svg").write_text(svg[:a] + svg[b:] if a >= 0 else svg)
+
+
+def picture(name: str, alt: str) -> str:
+    return (f'<picture><source media="(prefers-reduced-motion: reduce)" srcset="{RAW}/stats/{name}-static.svg">'
+            f'<img src="{RAW}/stats/{name}.svg" alt="{alt}" width="760"/></picture>')
 
 
 def year_sections(years: list[int], today: date) -> str:
@@ -322,7 +527,7 @@ def year_sections(years: list[int], today: date) -> str:
         blocks.append(
             f'<details{" open" if n == 0 else ""}>\n'
             f"<summary><b>{ay_label(ay)}</b>{note}</summary>\n<br/>\n"
-            f'<img src="{RAW}/stats/top-{slug}.svg" alt="Top contributors in {ay_label(ay)}" width="760"/>\n'
+            f'{picture(f"top-{slug}", f"How the top contributors changed during {ay_label(ay)}")}\n'
             "</details>")
     return "\n\n".join(blocks)
 
@@ -343,14 +548,14 @@ def main() -> None:
     print("HF:", hf)
 
     dates = gh_commit_dates(token)
-    (STATS / "activity.svg").write_text(render_org_svg(dates, today))
+    write_chart("activity", render_org_svg(dates, today))
 
     years = sorted({academic_year(d) for v in dates.values() for d in v})
     for old in STATS.glob("top-*.svg"):
         old.unlink()
     for ay in years:
         svg, top = render_year_svg(dates, ay, today)
-        (STATS / f"top-{ay_label(ay).replace('/', '-')}.svg").write_text(svg)
+        write_chart(f"top-{ay_label(ay).replace('/', '-')}", svg)
         print(ay_label(ay), top)
     update_readme(year_sections(years, today))
 

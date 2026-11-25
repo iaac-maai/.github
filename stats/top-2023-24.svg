@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="298" viewBox="0 0 760 298" role="img" aria-label="Cumulative commits of the top 1 contributors to iaac-maai in academic year 2023/24">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="314" viewBox="0 0 760 314" role="img" aria-label="How the top 5 contributors to iaac-maai changed during academic year 2023/24. Final ranking: STASYA00 8">
 <style>
 .bg{fill:#ffffff} .t1{fill:#1f2328} .t2{fill:#59636e} .grid{stroke:#eaeef2} .axis{stroke:#d1d9e0} .ring{stroke:#ffffff} .total{stroke:#1f2328} .totalf{fill:#1f2328} .area{fill:#1f2328;opacity:.06}
 .s0{stroke:#2a78d6} .f0{fill:#2a78d6}
@@ -6,6 +6,10 @@
 .s2{stroke:#1baf7a} .f2{fill:#1baf7a}
 .s3{stroke:#eda100} .f3{fill:#eda100}
 .s4{stroke:#e87ba4} .f4{fill:#e87ba4}
+.s5{stroke:#008300} .f5{fill:#008300}
+.s6{stroke:#6250d6} .f6{fill:#6250d6}
+.s7{stroke:#e34948} .f7{fill:#e34948}
+.s8{stroke:#8c959f} .f8{fill:#8c959f}
 @media (prefers-color-scheme: dark){
   .bg{fill:#0d1117} .t1{fill:#e6edf3} .t2{fill:#9198a1} .grid{stroke:#1f252c} .axis{stroke:#30363d} .ring{stroke:#0d1117} .total{stroke:#e6edf3} .totalf{fill:#e6edf3} .area{fill:#e6edf3;opacity:.08}
   .s0{stroke:#3987e5} .f0{fill:#3987e5}
@@ -13,31 +17,61 @@
   .s2{stroke:#199e70} .f2{fill:#199e70}
   .s3{stroke:#c98500} .f3{fill:#c98500}
   .s4{stroke:#d55181} .f4{fill:#d55181}
+  .s5{stroke:#008300} .f5{fill:#008300}
+  .s6{stroke:#9085e9} .f6{fill:#9085e9}
+  .s7{stroke:#e66767} .f7{fill:#e66767}
+  .s8{stroke:#6e7681} .f8{fill:#6e7681}
 }
 text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif} .small{font-size:12px} .val{font-size:12px;font-weight:600}
 .line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
 </style>
-<rect class="bg" width="760" height="298" rx="10"/>
+<rect class="bg" width="760" height="314" rx="10"/>
 <rect class="f0" x="20" y="18" width="14" height="4" rx="2"/>
 <text class="small t1" x="40" y="24">STASYA00</text>
-<line class="axis" x1="56" x2="584" y1="250.0" y2="250.0" stroke-width="1"/>
-<text class="small t2" x="48" y="254.0" text-anchor="end">0</text>
-<line class="grid" x1="56" x2="584" y1="200.0" y2="200.0" stroke-width="1"/>
-<text class="small t2" x="48" y="204.0" text-anchor="end">2</text>
-<line class="grid" x1="56" x2="584" y1="150.0" y2="150.0" stroke-width="1"/>
-<text class="small t2" x="48" y="154.0" text-anchor="end">4</text>
-<line class="grid" x1="56" x2="584" y1="100.0" y2="100.0" stroke-width="1"/>
-<text class="small t2" x="48" y="104.0" text-anchor="end">6</text>
-<line class="grid" x1="56" x2="584" y1="50.0" y2="50.0" stroke-width="1"/>
-<text class="small t2" x="48" y="54.0" text-anchor="end">8</text>
-<polyline class="line s0" points="56.0,250.0 222.4,250.0 222.4,225.0 235.4,225.0 235.4,150.0 236.8,150.0 236.8,75.0 404.6,75.0 404.6,50.0 584.0,50.0"/>
-<circle class="f0 ring" cx="584.0" cy="50.0" r="4" stroke-width="2"/>
-<text class="val t1" x="594.0" y="54.0">8</text>
-<text class="small t2" x="608.0" y="54.0">STASYA00</text>
-<text class="small t2" x="56.0" y="268.0" text-anchor="middle">Sep 23</text>
-<text class="small t2" x="144.2" y="268.0" text-anchor="middle">Nov 23</text>
-<text class="small t2" x="232.5" y="268.0" text-anchor="middle">Jan 24</text>
-<text class="small t2" x="319.3" y="268.0" text-anchor="middle">Mar 24</text>
-<text class="small t2" x="407.5" y="268.0" text-anchor="middle">May 24</text>
-<text class="small t2" x="495.8" y="268.0" text-anchor="middle">Jul 24</text>
+<line class="axis" x1="56" x2="584" y1="274.0" y2="274.0" stroke-width="1"/>
+<text class="small t2" x="48" y="278.0" text-anchor="end">0</text>
+<line class="grid" x1="56" x2="584" y1="219.0" y2="219.0" stroke-width="1"/>
+<text class="small t2" x="48" y="223.0" text-anchor="end">2</text>
+<line class="grid" x1="56" x2="584" y1="164.0" y2="164.0" stroke-width="1"/>
+<text class="small t2" x="48" y="168.0" text-anchor="end">4</text>
+<line class="grid" x1="56" x2="584" y1="109.0" y2="109.0" stroke-width="1"/>
+<text class="small t2" x="48" y="113.0" text-anchor="end">6</text>
+<line class="grid" x1="56" x2="584" y1="54.0" y2="54.0" stroke-width="1"/>
+<text class="small t2" x="48" y="58.0" text-anchor="end">8</text>
+<defs><clipPath id="win"><rect x="0" y="-9" width="220" height="18"/></clipPath></defs>
+<style>@media (prefers-reduced-motion:no-preference){
+@keyframes fade{0%{opacity:0}1.5%{opacity:1}97.5%{opacity:1}to{opacity:0}}.fade{animation:fade 18s linear infinite}
+@keyframes k1{0.000%{opacity:0.3}4.164%{opacity:0.3}13.962%{opacity:1}66.667%{opacity:1}to{opacity:1}}.a1{animation:k1 18s linear infinite}
+@keyframes k2{0.000%{stroke-dashoffset:578.4px}4.164%{stroke-dashoffset:578.4px}13.962%{stroke-dashoffset:550.9px}14.254%{stroke-dashoffset:539.4px}31.196%{stroke-dashoffset:456.8px}48.139%{stroke-dashoffset:374.3px}52.340%{stroke-dashoffset:207.9px}62.137%{stroke-dashoffset:180.4px}66.667%{stroke-dashoffset:1.0px}to{stroke-dashoffset:1.0px}}.a2{animation:k2 18s linear infinite}
+@keyframes k3{0.000%{opacity:0}4.164%{opacity:0}13.962%{opacity:1}66.667%{opacity:1}to{opacity:1}}.a3{animation:k3 18s linear infinite}
+@keyframes k4{0.000%{transform:translate(56.0px,274.0px)}4.164%{transform:translate(220.9px,274.0px)}13.962%{transform:translate(222.4px,246.5px)}14.254%{transform:translate(233.9px,246.5px)}31.196%{transform:translate(235.4px,164.0px)}48.139%{transform:translate(236.8px,81.5px)}52.340%{transform:translate(403.2px,81.5px)}62.137%{transform:translate(404.6px,54.0px)}66.667%{transform:translate(584.0px,54.0px)}to{transform:translate(584.0px,54.0px)}}.a4{animation:k4 18s linear infinite}
+@keyframes k5{0.000%{opacity:0}4.164%{opacity:0}13.962%{opacity:1}66.667%{opacity:1}to{opacity:1}}.a5{animation:k5 18s linear infinite}
+@keyframes k6{0.000%{transform:translate(56.0px,274.0px)}4.164%{transform:translate(220.9px,274.0px)}13.962%{transform:translate(222.4px,246.5px)}14.254%{transform:translate(233.9px,246.5px)}31.196%{transform:translate(235.4px,164.0px)}48.139%{transform:translate(236.8px,81.5px)}52.340%{transform:translate(403.2px,81.5px)}62.137%{transform:translate(404.6px,54.0px)}66.667%{transform:translate(584.0px,54.0px)}to{transform:translate(584.0px,54.0px)}}.a6{animation:k6 18s linear infinite}
+@keyframes k7{0.000%{transform:translateY(0px)}4.164%{transform:translateY(0px)}13.962%{transform:translateY(-18px)}14.254%{transform:translateY(-18px)}19.901%{transform:translateY(-36px)}25.549%{transform:translateY(-54px)}31.196%{transform:translateY(-72px)}36.844%{transform:translateY(-90px)}42.491%{transform:translateY(-108px)}48.139%{transform:translateY(-126px)}52.340%{transform:translateY(-126px)}62.137%{transform:translateY(-144px)}66.667%{transform:translateY(-144px)}to{transform:translateY(-144px)}}.a7{animation:k7 18s step-end infinite}
+}</style>
+<g class="fade">
+<g class="a1" opacity="1">
+<polyline class="line s0 a2" points="220.9,274.0 222.4,246.5 233.9,246.5 235.4,164.0 236.8,81.5 403.2,81.5 404.6,54.0 584.0,54.0" stroke-dasharray="578.4"/>
+</g>
+<g class="a3" opacity="1"><g class="a4" transform="translate(584.0 54.0)"><circle class="f0 ring" r="4" stroke-width="2"/></g></g>
+<g class="a5" opacity="1"><g class="a6" transform="translate(584.0 54.0)"><rect class="f0" x="10" y="-5" width="4" height="10" rx="2"/><g class="val t1">
+<g clip-path="url(#win)"><g class="a7" transform="translate(0 -144)">
+<text x="25" y="4" text-anchor="end">0</text>
+<text x="25" y="22" text-anchor="end">1</text>
+<text x="25" y="40" text-anchor="end">2</text>
+<text x="25" y="58" text-anchor="end">3</text>
+<text x="25" y="76" text-anchor="end">4</text>
+<text x="25" y="94" text-anchor="end">5</text>
+<text x="25" y="112" text-anchor="end">6</text>
+<text x="25" y="130" text-anchor="end">7</text>
+<text x="25" y="148" text-anchor="end">8</text>
+</g></g>
+</g><text class="small t2" x="31" y="4">STASYA00</text></g></g>
+</g>
+<text class="small t2" x="56.0" y="292.0" text-anchor="middle">Sep 23</text>
+<text class="small t2" x="144.2" y="292.0" text-anchor="middle">Nov 23</text>
+<text class="small t2" x="232.5" y="292.0" text-anchor="middle">Jan 24</text>
+<text class="small t2" x="319.3" y="292.0" text-anchor="middle">Mar 24</text>
+<text class="small t2" x="407.5" y="292.0" text-anchor="middle">May 24</text>
+<text class="small t2" x="495.8" y="292.0" text-anchor="middle">Jul 24</text>
 </svg>

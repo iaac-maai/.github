@@ -57,7 +57,7 @@ Each course has one main repository. Student and team work lives in its own repo
 ## Activity over time
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/activity.svg" alt="Cumulative commits over time in the iaac-maai organization" width="760"/>
+  <picture><source media="(prefers-reduced-motion: reduce)" srcset="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/activity-static.svg"><img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/activity.svg" alt="Cumulative commits over time in the iaac-maai organization" width="760"/></picture>
 </div>
 
 ### Top contributors per academic year
@@ -68,29 +68,29 @@ Click a year to open it.
 <details open>
 <summary><b>2026/27</b> · in progress</summary>
 <br/>
-<img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2026-27.svg" alt="Top contributors in 2026/27" width="760"/>
+<picture><source media="(prefers-reduced-motion: reduce)" srcset="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2026-27-static.svg"><img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2026-27.svg" alt="How the top contributors changed during 2026/27" width="760"/></picture>
 </details>
 
 <details>
 <summary><b>2025/26</b></summary>
 <br/>
-<img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2025-26.svg" alt="Top contributors in 2025/26" width="760"/>
+<picture><source media="(prefers-reduced-motion: reduce)" srcset="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2025-26-static.svg"><img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2025-26.svg" alt="How the top contributors changed during 2025/26" width="760"/></picture>
 </details>
 
 <details>
 <summary><b>2024/25</b></summary>
 <br/>
-<img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2024-25.svg" alt="Top contributors in 2024/25" width="760"/>
+<picture><source media="(prefers-reduced-motion: reduce)" srcset="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2024-25-static.svg"><img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2024-25.svg" alt="How the top contributors changed during 2024/25" width="760"/></picture>
 </details>
 
 <details>
 <summary><b>2023/24</b></summary>
 <br/>
-<img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2023-24.svg" alt="Top contributors in 2023/24" width="760"/>
+<picture><source media="(prefers-reduced-motion: reduce)" srcset="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2023-24-static.svg"><img src="https://raw.githubusercontent.com/iaac-maai/.github/main/stats/top-2023-24.svg" alt="How the top contributors changed during 2023/24" width="760"/></picture>
 </details>
 <!-- years:end -->
 
-<sub>Commits across all public repositories in the organization, accumulated within each academic year (September to August) and reset to zero every 1 September. Refreshed daily by a GitHub Action. Archived repositories are included; AI agents, bots and forks are excluded.</sub>
+<sub>Commits across all public repositories in the organization, accumulated within each academic year (September to August) and reset to zero every 1 September. The yearly charts replay who was in the top 5 at each moment; faded lines are people outside it. Refreshed daily by a GitHub Action. Archived repositories are included; AI agents, bots and forks are excluded.</sub>
 
 <!-- Badges -->
 [models-badge]: https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhuggingface.co%2Fapi%2Forganizations%2Fiaac-maai%2Foverview&query=%24.numModels&label=models&color=FFD21E&logo=huggingface&style=for-the-badge
