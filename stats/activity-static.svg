@@ -35,24 +35,24 @@ text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif} .small{font-
 <line class="grid" x1="56" x2="584" y1="64.0" y2="64.0" stroke-width="1"/>
 <text class="small t2" x="48" y="68.0" text-anchor="end">2,000</text>
 <text class="small t2" x="62.0" y="60">2023/24 · 8</text>
-<line class="grid" x1="180.2" x2="180.2" y1="56" y2="194.0" stroke-width="1" stroke-dasharray="3 3"/>
-<text class="small t2" x="186.2" y="60">2024/25 · 293</text>
-<line class="grid" x1="360.8" x2="360.8" y1="56" y2="194.0" stroke-width="1" stroke-dasharray="3 3"/>
-<text class="small t2" x="366.8" y="60">2025/26 · 186</text>
-<line class="grid" x1="541.4" x2="541.4" y1="56" y2="194.0" stroke-width="1" stroke-dasharray="3 3"/>
-<text class="small t2" x="547.4" y="60">2026/27 · 1,574</text>
+<line class="grid" x1="180.1" x2="180.1" y1="56" y2="194.0" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="small t2" x="186.1" y="60">2024/25 · 293</text>
+<line class="grid" x1="360.5" x2="360.5" y1="56" y2="194.0" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="small t2" x="366.5" y="60">2025/26 · 186</text>
+<line class="grid" x1="541.0" x2="541.0" y1="56" y2="194.0" stroke-width="1" stroke-dasharray="3 3"/>
+<text class="small t2" x="547.0" y="60">2026/27 · 1,604</text>
 <defs><clipPath id="win"><rect x="0" y="-9" width="220" height="18"/></clipPath></defs>
 
 <g class="fade">
-<polygon class="area a1" points="56.0,194.0 56.0,193.9 60.0,193.9 60.5,193.7 60.9,193.5 117.9,193.5 118.4,193.5 179.7,193.5 179.7,194.0"/>
-<polyline class="line total a2" points="56.0,193.9 60.0,193.9 60.5,193.7 60.9,193.5 117.9,193.5 118.4,193.5 179.7,193.5" stroke-dasharray="124.8"/>
-<polygon class="area a3" points="180.2,194.0 180.2,194.0 211.9,194.0 212.4,193.9 229.7,193.9 230.2,193.9 232.7,193.9 233.2,193.4 235.6,193.4 236.1,192.9 238.1,192.9 238.6,192.8 239.1,192.2 242.6,192.2 243.1,192.1 246.0,192.1 246.5,191.8 247.0,191.4 247.5,191.2 248.0,190.8 248.5,190.8 249.0,190.8 249.5,190.4 250.0,190.0 250.5,189.7 251.0,189.1 251.5,189.1 252.0,189.1 252.5,188.6 273.2,188.6 273.7,187.7 274.2,186.5 276.7,186.5 277.2,186.5 282.1,186.5 282.6,186.1 285.6,186.1 286.1,186.1 286.6,186.1 287.1,186.0 287.6,186.0 288.1,182.9 288.6,178.6 289.1,177.9 290.6,177.9 291.1,175.5 291.5,175.4 292.0,175.3 292.5,175.3 293.0,175.2 296.5,175.2 297.0,175.0 360.3,175.0 360.3,194.0"/>
-<polyline class="line total a4" points="180.2,194.0 211.9,194.0 212.4,193.9 229.7,193.9 230.2,193.9 232.7,193.9 233.2,193.4 235.6,193.4 236.1,192.9 238.1,192.9 238.6,192.8 239.1,192.2 242.6,192.2 243.1,192.1 246.0,192.1 246.5,191.8 247.0,191.4 247.5,191.2 248.0,190.8 248.5,190.8 249.0,190.8 249.5,190.4 250.0,190.0 250.5,189.7 251.0,189.1 251.5,189.1 252.0,189.1 252.5,188.6 273.2,188.6 273.7,187.7 274.2,186.5 276.7,186.5 277.2,186.5 282.1,186.5 282.6,186.1 285.6,186.1 286.1,186.1 286.6,186.1 287.1,186.0 287.6,186.0 288.1,182.9 288.6,178.6 289.1,177.9 290.6,177.9 291.1,175.5 291.5,175.4 292.0,175.3 292.5,175.3 293.0,175.2 296.5,175.2 297.0,175.0 360.3,175.0" stroke-dasharray="193.4"/>
-<polygon class="area a5" points="360.8,194.0 360.8,194.0 402.9,194.0 403.4,192.9 403.9,192.9 404.4,192.8 440.0,192.8 440.5,192.6 443.5,192.6 444.0,192.6 444.5,190.4 444.9,185.7 445.4,182.5 445.9,182.2 447.4,182.2 447.9,182.0 448.4,181.9 540.9,181.9 540.9,194.0"/>
-<polyline class="line total a6" points="360.8,194.0 402.9,194.0 403.4,192.9 403.9,192.9 404.4,192.8 440.0,192.8 440.5,192.6 443.5,192.6 444.0,192.6 444.5,190.4 444.9,185.7 445.4,182.5 445.9,182.2 447.4,182.2 447.9,182.0 448.4,181.9 540.9,181.9" stroke-dasharray="190.8"/>
-<polygon class="area a7" points="541.4,194.0 541.4,194.0 557.8,194.0 558.3,193.9 558.8,193.9 561.7,193.9 562.2,192.2 562.7,190.4 563.2,189.5 563.7,186.8 564.2,185.5 564.7,183.9 565.2,178.5 565.7,177.0 566.2,176.6 566.7,176.3 567.2,175.2 567.7,173.8 568.2,171.4 568.7,166.6 569.2,165.7 569.6,162.2 570.1,161.4 570.6,160.8 571.1,160.6 571.6,159.6 572.1,157.6 572.6,156.1 573.1,154.4 573.6,153.9 574.1,153.5 574.6,153.5 575.1,153.4 575.6,151.4 576.1,149.5 576.6,147.5 577.1,145.8 577.6,141.7 578.1,140.0 578.6,138.5 579.1,126.7 579.5,117.4 580.0,110.5 580.5,102.3 581.0,99.8 581.5,95.7 582.0,93.5 582.5,93.0 583.0,92.9 583.5,92.9 584.0,91.7 584.0,194.0"/>
-<polyline class="line total a8" points="541.4,194.0 557.8,194.0 558.3,193.9 558.8,193.9 561.7,193.9 562.2,192.2 562.7,190.4 563.2,189.5 563.7,186.8 564.2,185.5 564.7,183.9 565.2,178.5 565.7,177.0 566.2,176.6 566.7,176.3 567.2,175.2 567.7,173.8 568.2,171.4 568.7,166.6 569.2,165.7 569.6,162.2 570.1,161.4 570.6,160.8 571.1,160.6 571.6,159.6 572.1,157.6 572.6,156.1 573.1,154.4 573.6,153.9 574.1,153.5 574.6,153.5 575.1,153.4 575.6,151.4 576.1,149.5 576.6,147.5 577.1,145.8 577.6,141.7 578.1,140.0 578.6,138.5 579.1,126.7 579.5,117.4 580.0,110.5 580.5,102.3 581.0,99.8 581.5,95.7 582.0,93.5 582.5,93.0 583.0,92.9 583.5,92.9 584.0,91.7" stroke-dasharray="129.2"/>
-<g class="a9" transform="translate(584.0 91.7)"><circle class="totalf ring" r="4" stroke-width="2"/>
+<polygon class="area a1" points="56.0,194.0 56.0,193.9 60.0,193.9 60.4,193.7 60.9,193.5 117.8,193.5 118.3,193.5 179.6,193.5 179.6,194.0"/>
+<polyline class="line total a2" points="56.0,193.9 60.0,193.9 60.4,193.7 60.9,193.5 117.8,193.5 118.3,193.5 179.6,193.5" stroke-dasharray="124.7"/>
+<polygon class="area a3" points="180.1,194.0 180.1,194.0 211.7,194.0 212.2,193.9 229.5,193.9 230.0,193.9 232.5,193.9 233.0,193.4 235.5,193.4 236.0,192.9 237.9,192.9 238.4,192.8 238.9,192.2 242.4,192.2 242.9,192.1 245.8,192.1 246.3,191.8 246.8,191.4 247.3,191.2 247.8,190.8 248.3,190.8 248.8,190.8 249.3,190.4 249.8,190.0 250.3,189.7 250.8,189.1 251.3,189.1 251.8,189.1 252.3,188.6 273.0,188.6 273.5,187.7 274.0,186.5 276.5,186.5 277.0,186.5 281.9,186.5 282.4,186.1 285.4,186.1 285.9,186.1 286.4,186.1 286.9,186.0 287.4,186.0 287.9,182.9 288.4,178.6 288.9,177.9 290.3,177.9 290.8,175.5 291.3,175.4 291.8,175.3 292.3,175.3 292.8,175.2 296.3,175.2 296.8,175.0 360.0,175.0 360.0,194.0"/>
+<polyline class="line total a4" points="180.1,194.0 211.7,194.0 212.2,193.9 229.5,193.9 230.0,193.9 232.5,193.9 233.0,193.4 235.5,193.4 236.0,192.9 237.9,192.9 238.4,192.8 238.9,192.2 242.4,192.2 242.9,192.1 245.8,192.1 246.3,191.8 246.8,191.4 247.3,191.2 247.8,190.8 248.3,190.8 248.8,190.8 249.3,190.4 249.8,190.0 250.3,189.7 250.8,189.1 251.3,189.1 251.8,189.1 252.3,188.6 273.0,188.6 273.5,187.7 274.0,186.5 276.5,186.5 277.0,186.5 281.9,186.5 282.4,186.1 285.4,186.1 285.9,186.1 286.4,186.1 286.9,186.0 287.4,186.0 287.9,182.9 288.4,178.6 288.9,177.9 290.3,177.9 290.8,175.5 291.3,175.4 291.8,175.3 292.3,175.3 292.8,175.2 296.3,175.2 296.8,175.0 360.0,175.0" stroke-dasharray="193.2"/>
+<polygon class="area a5" points="360.5,194.0 360.5,194.0 402.6,194.0 403.1,192.9 403.6,192.9 404.0,192.8 439.6,192.8 440.1,192.6 443.1,192.6 443.6,192.6 444.1,190.4 444.6,185.7 445.1,182.5 445.6,182.2 447.1,182.2 447.6,182.0 448.0,181.9 540.5,181.9 540.5,194.0"/>
+<polyline class="line total a6" points="360.5,194.0 402.6,194.0 403.1,192.9 403.6,192.9 404.0,192.8 439.6,192.8 440.1,192.6 443.1,192.6 443.6,192.6 444.1,190.4 444.6,185.7 445.1,182.5 445.6,182.2 447.1,182.2 447.6,182.0 448.0,181.9 540.5,181.9" stroke-dasharray="190.6"/>
+<polygon class="area a7" points="541.0,194.0 541.0,194.0 557.3,194.0 557.8,193.9 558.3,193.9 561.3,193.9 561.8,192.2 562.2,190.4 562.7,189.5 563.2,186.8 563.7,185.5 564.2,183.9 564.7,178.5 565.2,177.0 565.7,176.6 566.2,176.3 566.7,175.2 567.2,173.8 567.7,171.4 568.2,166.6 568.7,165.7 569.2,162.2 569.7,161.4 570.2,160.8 570.7,160.6 571.1,159.6 571.6,157.6 572.1,156.1 572.6,154.4 573.1,153.9 573.6,153.5 574.1,153.5 574.6,153.4 575.1,151.4 575.6,149.5 576.1,147.5 576.6,145.8 577.1,141.7 577.6,140.0 578.1,138.5 578.6,126.7 579.1,117.4 579.6,110.5 580.0,102.3 580.5,99.8 581.0,95.7 581.5,93.5 582.0,93.0 582.5,92.9 583.0,92.9 583.5,90.7 584.0,89.7 584.0,194.0"/>
+<polyline class="line total a8" points="541.0,194.0 557.3,194.0 557.8,193.9 558.3,193.9 561.3,193.9 561.8,192.2 562.2,190.4 562.7,189.5 563.2,186.8 563.7,185.5 564.2,183.9 564.7,178.5 565.2,177.0 565.7,176.6 566.2,176.3 566.7,175.2 567.2,173.8 567.7,171.4 568.2,166.6 568.7,165.7 569.2,162.2 569.7,161.4 570.2,160.8 570.7,160.6 571.1,159.6 571.6,157.6 572.1,156.1 572.6,154.4 573.1,153.9 573.6,153.5 574.1,153.5 574.6,153.4 575.1,151.4 575.6,149.5 576.1,147.5 576.6,145.8 577.1,141.7 577.6,140.0 578.1,138.5 578.6,126.7 579.1,117.4 579.6,110.5 580.0,102.3 580.5,99.8 581.0,95.7 581.5,93.5 582.0,93.0 582.5,92.9 583.0,92.9 583.5,90.7 584.0,89.7" stroke-dasharray="131.3"/>
+<g class="a9" transform="translate(584.0 89.7)"><circle class="totalf ring" r="4" stroke-width="2"/>
 <g clip-path="url(#win)"><g class="a10" transform="translate(0 -1926)">
 <text x="10" y="4" text-anchor="start"><tspan class="val t1">1</tspan><tspan class="small t2"> commits · 1 person</tspan></text>
 <text x="10" y="22" text-anchor="start"><tspan class="val t1">4</tspan><tspan class="small t2"> commits · 1 person</tspan></text>
@@ -124,52 +124,52 @@ text{font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif} .small{font-
 <text x="10" y="1210" text-anchor="start"><tspan class="val t1">384</tspan><tspan class="small t2"> commits · 31 people</tspan></text>
 <text x="10" y="1228" text-anchor="start"><tspan class="val t1">421</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
 <text x="10" y="1246" text-anchor="start"><tspan class="val t1">436</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
-<text x="10" y="1264" text-anchor="start"><tspan class="val t1">462</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
-<text x="10" y="1282" text-anchor="start"><tspan class="val t1">489</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
-<text x="10" y="1300" text-anchor="start"><tspan class="val t1">502</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
-<text x="10" y="1318" text-anchor="start"><tspan class="val t1">511</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
-<text x="10" y="1336" text-anchor="start"><tspan class="val t1">514</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
-<text x="10" y="1354" text-anchor="start"><tspan class="val t1">529</tspan><tspan class="small t2"> commits · 33 people</tspan></text>
-<text x="10" y="1372" text-anchor="start"><tspan class="val t1">560</tspan><tspan class="small t2"> commits · 33 people</tspan></text>
-<text x="10" y="1390" text-anchor="start"><tspan class="val t1">583</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1408" text-anchor="start"><tspan class="val t1">609</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1426" text-anchor="start"><tspan class="val t1">617</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1444" text-anchor="start"><tspan class="val t1">623</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1462" text-anchor="start"><tspan class="val t1">624</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1480" text-anchor="start"><tspan class="val t1">655</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1498" text-anchor="start"><tspan class="val t1">684</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1516" text-anchor="start"><tspan class="val t1">715</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1534" text-anchor="start"><tspan class="val t1">742</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1552" text-anchor="start"><tspan class="val t1">773</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1570" text-anchor="start"><tspan class="val t1">804</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1588" text-anchor="start"><tspan class="val t1">831</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1606" text-anchor="start"><tspan class="val t1">854</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1624" text-anchor="start"><tspan class="val t1">914</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1642" text-anchor="start"><tspan class="val t1">974</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
-<text x="10" y="1660" text-anchor="start"><tspan class="val t1">1,035</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1678" text-anchor="start"><tspan class="val t1">1,082</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1696" text-anchor="start"><tspan class="val t1">1,130</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1714" text-anchor="start"><tspan class="val t1">1,178</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1732" text-anchor="start"><tspan class="val t1">1,231</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1750" text-anchor="start"><tspan class="val t1">1,284</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1768" text-anchor="start"><tspan class="val t1">1,326</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1786" text-anchor="start"><tspan class="val t1">1,368</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1804" text-anchor="start"><tspan class="val t1">1,410</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1822" text-anchor="start"><tspan class="val t1">1,450</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1840" text-anchor="start"><tspan class="val t1">1,481</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1858" text-anchor="start"><tspan class="val t1">1,512</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1876" text-anchor="start"><tspan class="val t1">1,546</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1894" text-anchor="start"><tspan class="val t1">1,554</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1912" text-anchor="start"><tspan class="val t1">1,555</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
-<text x="10" y="1930" text-anchor="start"><tspan class="val t1">1,574</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1264" text-anchor="start"><tspan class="val t1">489</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
+<text x="10" y="1282" text-anchor="start"><tspan class="val t1">502</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
+<text x="10" y="1300" text-anchor="start"><tspan class="val t1">511</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
+<text x="10" y="1318" text-anchor="start"><tspan class="val t1">514</tspan><tspan class="small t2"> commits · 32 people</tspan></text>
+<text x="10" y="1336" text-anchor="start"><tspan class="val t1">529</tspan><tspan class="small t2"> commits · 33 people</tspan></text>
+<text x="10" y="1354" text-anchor="start"><tspan class="val t1">560</tspan><tspan class="small t2"> commits · 33 people</tspan></text>
+<text x="10" y="1372" text-anchor="start"><tspan class="val t1">583</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1390" text-anchor="start"><tspan class="val t1">609</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1408" text-anchor="start"><tspan class="val t1">617</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1426" text-anchor="start"><tspan class="val t1">623</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1444" text-anchor="start"><tspan class="val t1">624</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1462" text-anchor="start"><tspan class="val t1">655</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1480" text-anchor="start"><tspan class="val t1">684</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1498" text-anchor="start"><tspan class="val t1">715</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1516" text-anchor="start"><tspan class="val t1">742</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1534" text-anchor="start"><tspan class="val t1">773</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1552" text-anchor="start"><tspan class="val t1">804</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1570" text-anchor="start"><tspan class="val t1">831</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1588" text-anchor="start"><tspan class="val t1">854</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1606" text-anchor="start"><tspan class="val t1">914</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1624" text-anchor="start"><tspan class="val t1">974</tspan><tspan class="small t2"> commits · 34 people</tspan></text>
+<text x="10" y="1642" text-anchor="start"><tspan class="val t1">1,035</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1660" text-anchor="start"><tspan class="val t1">1,082</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1678" text-anchor="start"><tspan class="val t1">1,130</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1696" text-anchor="start"><tspan class="val t1">1,178</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1714" text-anchor="start"><tspan class="val t1">1,231</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1732" text-anchor="start"><tspan class="val t1">1,284</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1750" text-anchor="start"><tspan class="val t1">1,326</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1768" text-anchor="start"><tspan class="val t1">1,368</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1786" text-anchor="start"><tspan class="val t1">1,410</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1804" text-anchor="start"><tspan class="val t1">1,450</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1822" text-anchor="start"><tspan class="val t1">1,481</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1840" text-anchor="start"><tspan class="val t1">1,512</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1858" text-anchor="start"><tspan class="val t1">1,546</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1876" text-anchor="start"><tspan class="val t1">1,554</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1894" text-anchor="start"><tspan class="val t1">1,555</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1912" text-anchor="start"><tspan class="val t1">1,589</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
+<text x="10" y="1930" text-anchor="start"><tspan class="val t1">1,604</tspan><tspan class="small t2"> commits · 35 people</tspan></text>
 </g></g>
 </g>
 </g>
 <text class="small t2" x="59.5" y="212.0" text-anchor="middle">Jan 24</text>
-<text class="small t2" x="149.5" y="212.0" text-anchor="middle">Jul 24</text>
-<text class="small t2" x="240.6" y="212.0" text-anchor="middle">Jan 25</text>
-<text class="small t2" x="330.1" y="212.0" text-anchor="middle">Jul 25</text>
-<text class="small t2" x="421.2" y="212.0" text-anchor="middle">Jan 26</text>
-<text class="small t2" x="510.8" y="212.0" text-anchor="middle">Jul 26</text>
-<text class="small t2" x="740" y="230" text-anchor="end">Updated 26 Nov 2026</text>
+<text class="small t2" x="149.4" y="212.0" text-anchor="middle">Jul 24</text>
+<text class="small t2" x="240.4" y="212.0" text-anchor="middle">Jan 25</text>
+<text class="small t2" x="329.9" y="212.0" text-anchor="middle">Jul 25</text>
+<text class="small t2" x="420.9" y="212.0" text-anchor="middle">Jan 26</text>
+<text class="small t2" x="510.3" y="212.0" text-anchor="middle">Jul 26</text>
+<text class="small t2" x="740" y="230" text-anchor="end">Updated 27 Nov 2026</text>
 </svg>
